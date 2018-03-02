@@ -9,7 +9,7 @@
 3. 初始化数据库，执行doc文件夹下sql脚本；
 4. 打包成war运行；默认有两个登陆账号：admin\admin、demo\123456；
 ## 扩展
-你可以实现自己的一套模板；本系统采用了Bettl模板引擎，可访问官网[http://ibeetl.com]（http://ibeetl.com）查看文档。
+你可以实现自己的一套模板；本系统采用了Bettl模板引擎，可访问其官网 http://ibeetl.com 查看文档。
 代码实现：
 1. 实现IBuild里面的build方法；
 2. 在applicationContext-os-type.xml里添加上对应的实现类；
