@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.carejava.duce.ject.web.dao.CmRoleMapper">
+    <resultMap id="BaseResultMap" type="com.carejava.duce.ject.web.entity.CmRoleEntity">
+        <result column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="DESCRIPTION" property="description" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ID,NAME,DESCRIPTION
+    </sql>
+    <insert id="insert" parameterType="com.carejava.duce.ject.web.entity.CmRoleEntity">
+        insert into CM_ROLE( ID,NAME,DESCRIPTION )
+        values ( #{id},#{name},#{description} ) 
+    </insert>
+    <update id="update" parameterType="com.carejava.duce.ject.web.entity.CmRoleEntity">
+        update CM_ROLE 
+            <set> 
+                <if test="id != null">
+                    ID = #{id},
+                </if>  
+                <if test="name != null">
+                    NAME = #{name},
+                </if>  
+                <if test="description != null">
+                    DESCRIPTION = #{description},
+                </if> 
+            </set>  
+            where ID = #{id} 
+         
+    </update>
+    <update id="delete" parameterType="com.carejava.duce.ject.web.entity.CmRoleEntity">
+        delete from CM_ROLE where ID = #{id} 
+    </update>
+    <select id="selectCount" parameterType="com.carejava.duce.ject.web.in.vo.CmRoleVO" resultType="java.lang.Integer">
+        select count(1) from CM_ROLE 
+            <where> 
+                <if test="id != null">
+                    and ID = #{id}
+                </if>  
+                <if test="name != null">
+                    and NAME = #{name}
+                </if>  
+                <if test="description != null">
+                    and DESCRIPTION = #{description}
+                </if> 
+            </where> 
+         
+    </select>
+    <select id="selectPageList" parameterType="com.carejava.duce.ject.web.in.vo.CmRoleVO" resultMap="BaseResultMap">
+        select 
+            <include refid="Base_Column_List"/> from CM_ROLE
+            <where> 
+                <if test="id != null">
+                    and ID = #{id}
+                </if>  
+                <if test="name != null">
+                    and NAME = #{name}
+                </if>  
+                <if test="description != null">
+                    and DESCRIPTION = #{description}
+                </if> 
+            </where>  
+            limit #{offset},#{pageNum} 
+         
+    </select>
+    <select id="queryById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select  
+        <include refid="Base_Column_List"/>  
+        from CM_ROLE where ID = #{id} 
+    </select>
+    <select id="queryAll" resultMap="BaseResultMap">
+        select  
+        <include refid="Base_Column_List"/>  
+        from CM_ROLE 
+    </select>
+    <select id="queryByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT r.* FROM CM_ROLE r,cm_user_role_map u WHERE u.ROLE_ID = r.id AND u.USER_ID = #{userId}
+    </select>
+</mapper>

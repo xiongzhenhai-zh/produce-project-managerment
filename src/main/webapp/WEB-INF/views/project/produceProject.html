@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>生成项目</title>
+    <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.min.css"/>
+</head>
+<body>
+<ul class="list-group">
+
+    <!-- <li class="list-group-item">
+         <div class="dropdown">
+             <input type="checkbox" name="model" value="1"/>
+             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                     aria-haspopup="true" aria-expanded="true">
+                 Dropdown1
+                 <span class="caret"></span>
+             </button>
+             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                 <li data-stopPropagation="true"><a href="#" style="padding-right: 30px;">Action</a>
+                     <input type="checkbox" name="modelattr" value="1"
+                            style="float: right;margin-right: 10px;margin-top: -20px;" checked></li>
+                 <li data-stopPropagation="true"><a href="#" style="padding-right: 30px;">Another action</a>
+                     <input type="checkbox" name="modelattr" value="2"
+                            style="float: right;margin-right: 10px;margin-top: -20px;" checked></li>
+                 <li data-stopPropagation="true"><a href="#" style="padding-right: 30px;">Something else
+                     here11111111111111</a>
+                     <input type="checkbox" name="modelattr" value="3"
+                            style="float: right;margin-right: 10px;margin-top: -20px;" checked>
+                 </li>
+                 <li role="separator" class="divider"></li>
+                 <li data-stopPropagation="true">
+                     <button type="button" class="btn btn-default modelattrAll" style="margin-left: 10px;" value="true">取消全选</button>
+                 </li>
+             </ul>
+         </div>
+     </li>-->
+</ul>
+<button class="btn btn-default" type="submit" style="margin-left: 50%;margin-top: 10px" id="produce">生成</button>
+</body>
+<script type="text/javascript" src="../resources/js/lib/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../resources/js/lib/laydate.js"></script>
+<script type="text/javascript" src="../resources/layer/layer.js"></script>
+<script type="text/javascript" src="../resources/js/commonUtil.js" charset="utf-8"></script>
+<script>
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null)return unescape(r[2]);
+        return null;
+    }
+    var id = GetQueryString("id");
+    console.log(id);
+    var _initselect = function (data) {
+        $(".list-group").html();
+        for (var i = 0; i < data.length; i++) {
+            var attr = data[i].modelattributeOutVOS;
+            var html = '<li class="list-group-item">' +
+                '        <div class="dropdown">' +
+                '            <input type="checkbox" name="model" value="' + data[i].id + '" checked/>' +
+                '            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu' + i + '" data-toggle="dropdown"' +
+                '                    aria-haspopup="true" aria-expanded="true" >' +
+                data[i].name +
+                '                <span class="caret"></span>' +
+                '            </button>' +
+                '            <ul class="dropdown-menu" aria-labelledby="dropdownMenu' + i + '">';
+            for (var j = 0; j < attr.length; j++) {
+                html += '<li data-stopPropagation="true"><a href="#" style="padding-right: 30px;">' + attr[j].name + '</a>' +
+                    '                    <input type="checkbox" name="modelattr" value="' + attr[j].id + '"' +
+                    '                        style="float: right;margin-right: 10px;margin-top: -20px;" checked = true></li>';
+            }
+            html += '                <li role="separator" class="divider"></li>' +
+                '                <li data-stopPropagation="true">' +
+                '                    <button type="button" class="btn btn-default modelattrAll" style="margin-left: 10px;" value="true">取消全选</button>' +
+                '                </li>' +
+                '           </ul>' +
+                '        </div>' +
+                '    </li>';
+            $(".list-group").append(html);
+        }
+        $("ul.dropdown-menu").on("click", "[data-stopPropagation]", function (e) {
+            e.stopPropagation();
+        });
+        $(".modelattrAll").click(function () {
+            var flage = !($(this).attr("value") === "true");
+            $("input:checkbox", $(this).parents(".dropdown-menu")).each(function () {
+                $(this).prop('checked', flage);
+            });
+            if (flage) {
+                $(this).html("取消全选");
+            } else {
+                $(this).html("全选");
+            }
+            $(this).attr("value", flage);
+        });
+    };
+    var _init = function () {
+        var info = {};
+        info.id = id;
+        submitUrl('../project/queryModelsByProjectId', info, function (data) {
+            console.log(data);
+            if (data.code == "000") {
+                _initselect(data.content);
+            } else {
+                layer.alert('保存失败', {icon: 5, title: '告警'});
+            }
+            layer.closeAll('loading');
+        });
+    };
+    $(function () {
+        _init();
+        $("#produce").click(function () {
+            var arr = [];
+            $("input[name='model']:checked").each(function () {
+                var data = {};
+                data.id = $(this).val();
+                data.attr = [];
+                $("input:checkbox", $(this).siblings(".dropdown-menu")).each(function () {
+                    if ($(this).is(':checked')) {
+                        var attr = {};
+                        attr.id = $(this).val();
+                        data.attr.push(attr);
+                    }
+                });
+                arr.push(data);
+            });
+            console.log(arr);
+            var obj = {};
+            obj.id = id;
+            obj.modelIds = JSON.stringify(arr);
+            submitUrl('../project/produceById', obj, function (data) {
+                console.log(data);
+                if (data.code === "000") {
+                    var confirmInfo = "<div style='text-align: center;'>生成成功是否立即下载</div>";
+                    layer.confirm(confirmInfo, {
+                        title: '提示',
+                        btn: ['是', '否'] //按钮
+                    }, function () {
+                        newWin("./project/download?filePath=" + data.content,1);
+                        layer.msg('操作成功', {
+                            time: 1000 //0.5s后自动关闭
+                        });
+                    }, function () {
+                        layer.closeAll();
+                    });
+                } else {
+                    layer.alert('生成失败', {icon: 5, title: '告警'});
+                }
+                layer.closeAll('loading');
+            });
+        })
+    });
+    function newWin(url, id) {
+        var a = document.createElement('a');
+        a.setAttribute('href', url);
+        a.setAttribute('target', '_blank');
+        a.setAttribute('id', id);
+        // 防止反复添加
+        if (!document.getElementById(id)) {
+            document.body.appendChild(a);
+        }
+        a.click();
+    }
+</script>
+</html>

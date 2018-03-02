@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="description" content=""/>
+    <meta name="author" content="mime"/>
+    <meta name="keywords" content="chats homeInfomation"/>
+    <link rel="stylesheet" type="text/css" href="./resources/css/jquery.datables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="./resources/css/list.css"/>
+    <link rel="stylesheet" type="text/css" href="./resources/css/validate.css"/>
+    <link rel="stylesheet" type="text/css" href="./resources/css/_details.css"/>
+    <link rel="stylesheet" type="text/css" href="./resources/css/laydate.css"/>
+    <link rel="stylesheet" type="text/css" href="./resources/css/skins/laydate.css"/>
+    <title>角色与权限关系表</title>
+</head>
+<body>
+<form id="form">
+    <div class="detailsWrap" style="height:auto;">
+        <div class="detailsWrapInner">
+            <!--第一层信息-->
+            <div class="detailsTitles">
+                <div class="detailsTitlesTitle">
+                    查询角色与权限关系表
+                </div>
+            </div>
+            <div class="detailsItemOutWrap detailSectionTop">
+                <div class="detailsItemInnerRop">
+                    <div class="detailsItemPDivPop">
+                        角色编号:
+                    </div>
+                    <div class="detailsItemInputDiv">
+                        <input id="roleId" name="roleId" type="text"/>
+                    </div>
+                </div>
+                <div class="detailsItemInnerRop">
+                    <div class="detailsItemPDivPop">
+                        权限编号:
+                    </div>
+                    <div class="detailsItemInputDiv">
+                        <input id="privId" name="privId" type="text"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="detailsItemOutWrap detailSectionTop">
+            <div class="detailsItemOutWrap detailSectionTop">
+                <input class="detailsItemInput listButton" style="width:150px;height: 38px; margin-left:30%;"
+                       type="button" id="resetBtn" value="重置"/>
+                <input class="detailsItemInput listButton" style="width:150px;height: 38px; margin-left:30px;"
+                       type="button" id="searchBtn" value="查询"/>
+            </div>
+        </div>
+    </div>
+    <div class="listWrap">
+
+        <!--第一层信息-->
+        <div class="detailsTitles">
+            <div class="detailsTitlesTitle">
+                角色与权限关系表列表
+            </div>
+        </div>
+        <table id="cmRolePrivMapTable" class="display dataTablesAudit"
+               style="border-bottom: 1px solid #EFEFEF !important;padding: 5px;" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>主键</th>
+                <th>角色编号</th>
+                <th>权限编号</th>
+                <th>快捷操作</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</form>
+</body>
+<script type="text/javascript" src="./resources/js/lib/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="./resources/js/lib/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="./resources/js/lib/jquery.validate.js"></script>
+<script type="text/javascript" src="./resources/js/lib/messages_zh.js"></script>
+<script type="text/javascript" src="./resources/js/commonUtil.js" charset="utf-8"></script>
+<script type="text/javascript" src="./resources/js/cmRolePrivMap/cmRolePrivMapList.js"></script>
+<script type="text/javascript" src="./resources/js/lib/laydate.js"></script>
+<script type="text/javascript" src="./resources/layer/layer.js"></script>
+<script type="text/javascript" src="./resources/js/validatorUtil.js" charset="utf-8"></script>
+</html>

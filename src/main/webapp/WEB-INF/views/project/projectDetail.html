@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>品类信息管理</title>
+    <link rel="stylesheet" type="text/css" href="./resources/css/validate.css"/>
+    <link rel="stylesheet" type="text/css" href="./resources/css/list.css"/>
+    <link rel="stylesheet" type="text/css" href="./resources/css/buttons.css"/>
+    <link rel="stylesheet" type="text/css" href="./resources/css/font-awesome.css"/>
+    <link rel="stylesheet" type="text/css" href="./resources/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="./resources/css/base/base.css"/>
+</head>
+<body>
+<form id="form">
+    <div class="DetailPart">
+        <div class="DetailTitle">商户信息</div>
+        <div class="DetailTop">
+            <div class="DetailItemLeft">
+                <div class="DetailItemDesc">
+                    <font class="redStar">*</font>maven-groupId:
+                </div>
+                <div class="DetailItemDetailDiv">
+                    <div id="groupid"></div>
+                </div>
+            </div>
+        </div>
+        <div class="DetailTop">
+            <div class="DetailItemLeft">
+                <div class="DetailItemDesc">
+                    <font class="redStar">*</font>maven-artifactId:
+                </div>
+                <div class="DetailItemDetailDiv">
+                    <div id="artifactid"></div>
+                </div>
+            </div>
+        </div>
+        <div class="DetailTop">
+            <div class="DetailItemLeft">
+                <div class="DetailItemDesc">
+                    <font class="redStar">*</font>项目名称:
+                </div>
+                <div class="DetailItemDetailDiv">
+                    <div id="name"></div>
+                </div>
+            </div>
+        </div>
+        <div class="DetailTop">
+            <div class="DetailItemLeft">
+                <div class="DetailItemDesc">
+                    <font class="redStar">*</font>项目中文名:
+                </div>
+                <div class="DetailItemDetailDiv">
+                    <div id="alies"></div>
+                </div>
+            </div>
+        </div>
+        <div class="DetailTop">
+            <div class="DetailItemLeft">
+                <div class="DetailItemDesc">
+                    <font class="redStar">*</font>数据库:
+                </div>
+                <div class="DetailItemDetailDiv">
+                    <div id="databasename"></div>
+                </div>
+            </div>
+        </div>
+        <div class="DetailTop">
+            <div class="DetailItemLeft">
+                <div class="DetailItemDesc">
+                    <font class="redStar">*</font>包路径:
+                </div>
+                <div class="DetailItemDetailDiv">
+                    <div id="pkgname"></div>
+                </div>
+            </div>
+        </div>
+        <div class="DetailTop">
+            <div class="DetailItemLeft">
+                <div class="DetailItemDesc">
+                    <font class="redStar">*</font>作者:
+                </div>
+                <div class="DetailItemDetailDiv">
+                    <div id="autor"></div>
+                </div>
+            </div>
+        </div>
+        <div class="DetailTop">
+            <div class="DetailItemLeft">
+                <div class="DetailItemDesc">
+                    <font class="redStar">*</font>创建时间:
+                </div>
+                <div class="DetailItemDetailDiv">
+                    <div id="createTime"></div>
+                </div>
+            </div>
+        </div>
+        <div class="DetailTop">
+            <div class="DetailItemLeft">
+                <div class="DetailItemDesc">
+                    包含表:
+                </div>
+                <div class="DetailItemDetailDiv">
+                    <div id="exclusionsTable"></div>
+                </div>
+            </div>
+        </div>
+        <div class="DetailTop">
+            <div class="DetailItemLeft">
+                <div class="DetailItemDesc">
+                    <font class="redStar">*</font>生成方式:
+                </div>
+                <div class="DetailItemDetailDiv">
+                    <div id="produceType"></div>
+                </div>
+            </div>
+        </div>
+        <div class="DetailTop">
+            <div class="DetailItemLeft">
+                <div class="DetailItemDesc">
+                    <font class="redStar">*</font>数据库连接:
+                </div>
+                <div class="DetailItemDetailDiv" style="width: auto">
+                    <div id="dbUrl"></div>
+                </div>
+            </div>
+        </div>
+        <div class="DetailTop">
+            <div class="DetailItemLeft">
+                <div class="DetailItemDesc">
+                    <font class="redStar">*</font>数据库用户名:
+                </div>
+                <div class="DetailItemDetailDiv">
+                    <div id="dbUsername"></div>
+                </div>
+            </div>
+        </div>
+        <div class="DetailTop">
+            <div class="DetailItemLeft">
+                <div class="DetailItemDesc">
+                    <font class="redStar">*</font>数据库密码:
+                </div>
+                <div class="DetailItemDetailDiv">
+                    <div id="dbPassword"></div>
+                </div>
+            </div>
+        </div>
+        <div class="DetailTop">
+            <div class="DetailItemLeft">
+                <div class="DetailItemDesc">
+                    <font class="redStar">*</font>后端模板:
+                </div>
+                <div class="DetailItemDetailDiv">
+                    <div id="serverFrameType"></div>
+                </div>
+            </div>
+        </div>
+        <div class="DetailTop">
+            <div class="DetailItemLeft">
+                <div class="DetailItemDesc">
+                    <font class="redStar">*</font>管理平台模板:
+                </div>
+                <div class="DetailItemDetailDiv">
+                    <div id="clientFrameType"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="OKDivContainer">
+    <div class="OKDiv" id="Cancel">返回</div>
+</div>
+</body>
+<script type="text/javascript" src="./resources/layer/layer.js"></script>
+<script type="text/javascript" src="./resources/js/jquery.form.js" charset="utf-8"></script>
+<script type="text/javascript" src="./resources/js/commonUtil.js" charset="utf-8"></script>
+<script type="text/javascript" src="./resources/js/common.js" charset="utf-8"></script>
+<script type="text/javascript" src="./resources/js/project/projectDetail.js"></script>
+</html>

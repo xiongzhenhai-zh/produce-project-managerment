@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.carejava.duce.ject.web.dao.ProduceRecordMapper">
+    <resultMap id="BaseResultMap" type="com.carejava.duce.ject.web.entity.ProduceRecordEntity">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="project_id" property="projectId" jdbcType="INTEGER"/>
+        <result column="file_path" property="filePath" jdbcType="VARCHAR"/>
+        <result column="sys_type" property="sysType" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,user_id,file_path,sys_type,create_time
+    </sql>
+    <insert id="insert" parameterType="com.carejava.duce.ject.web.entity.ProduceRecordEntity" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into produce_record( id,user_id,file_path,sys_type,create_time,project_id )
+        values ( #{id},#{userId},#{filePath},#{sysType},#{createTime},#{projectId} )
+    </insert>
+    <update id="update" parameterType="com.carejava.duce.ject.web.entity.ProduceRecordEntity">
+        update produce_record
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="filePath != null">
+                file_path = #{filePath},
+            </if>
+            <if test="sysType != null">
+                sys_type = #{sysType},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="projectId != null">
+                project_id = #{projectId}
+            </if>
+        </set>
+        where ID = #{id}
+
+    </update>
+    <update id="delete" parameterType="com.carejava.duce.ject.web.entity.ProduceRecordEntity">
+        delete from produce_record where ID = #{id} 
+    </update>
+    <select id="selectCount" parameterType="com.carejava.duce.ject.web.in.vo.ProduceRecordVO"
+            resultType="java.lang.Integer">
+        select count(1) from produce_record
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="filePath != null">
+                and file_path like #{filePath}
+            </if>
+            <if test="sysType != null">
+                and sys_type = #{sysType}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="projectId != null">
+                and project_id = #{projectId}
+            </if>
+        </where>
+
+    </select>
+    <select id="selectPageList" parameterType="com.carejava.duce.ject.web.in.vo.ProduceRecordVO"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from produce_record
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="filePath != null">
+                and file_path like #{filePath}
+            </if>
+            <if test="sysType != null">
+                and sys_type = #{sysType}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="projectId != null">
+                and project_id = #{projectId}
+            </if>
+        </where>
+        ORDER BY id DESC
+        limit #{offset},#{pageNum}
+
+    </select>
+    <select id="queryById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from produce_record where id = #{id}
+    </select>
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from produce_record
+    </select>
+</mapper>

@@ -1,0 +1,146 @@
+var datatable = null;
+var btnAuths; //本页面拥有的按钮权限
+var $${model_xzh.lowName}Table;
+$(document).ready(function() {
+	//查询按钮权限
+		$${model_xzh.lowName}Table = $("#${model_xzh.lowName}Table");
+		var reqObj = getJsonParam() || {
+		    pageLength:10,
+		    currentPageNo:1
+		};
+		initDataTable1();
+		var $form = $("#form");
+		var $validate = ValidateFormUtil.valid($form);
+
+		
+
+
+	$("#searchBtn").click(function() {
+		$isValid = true;
+		$.each($("#stockRange :input"),function(i,n){
+			if(!$validate.element($(n))){
+				$isValid =false;
+			}
+		})
+		
+		if($isValid)
+		{
+			<% for(modelAttribute in model_xzh.attributes){ %>
+            reqObj.${modelAttribute.name}=$("#${modelAttribute.name}").val()==""?null:$("#${modelAttribute.name}").val();
+            		<% } %>
+		    datatable.fnDraw();
+		} 
+	});		
+	
+	$("#resetBtn").click(function() {
+		<% for(modelAttribute in model_xzh.attributes){ %>
+			$("#${modelAttribute.name}").val("");
+		<% } %>
+		
+	});
+	
+	 $(document).keypress(function(e) {  
+		    // 回车键事件  
+		       if(e.which == 13) {  
+		   		jQuery("#searchBtn").click();  
+		       }  
+      }); 	
+	
+		// 初始化表格
+function initDataTable1(){
+        var columns = [
+            <% for(modelAttribute in model_xzh.attributes){ %>
+               {"bSortable": false, "mData": null},// ${modelAttribute.alies}
+             <% } %>
+               {"bSortable": false, "mData": null} // 操作
+           ];
+        datatable = initDataTableCommonUseUrl($${model_xzh.lowName}Table,columns,"./${model_xzh.lowName}/selectPageList",reqObj,"content.list",function (nRow, aData, iDisplayIndex) {
+        <% for(var i=0;i<model_xzh.attributes.~size;i++){ %>
+            <%
+                switch(model_xzh.attributes[i].type){
+                        case "String":
+                                println('$("td:eq('+i+')", nRow).text(aData.'+model_xzh.attributes[i].name+');');
+                                break;
+                        case "Date":
+                                println('var '+model_xzh.attributes[i].name+' = new Date(aData.'+model_xzh.attributes[i].name+').pattern("yyyy-MM-dd hh:mm:ss");');
+                                println('$("td:eq('+i+')", nRow).text('+model_xzh.attributes[i].name+');');
+                                break;
+                        default:
+                                println('$("td:eq('+i+')", nRow).text(aData.'+model_xzh.attributes[i].name+');');
+                }
+                %>
+        <% } %>
+         <% for(attribute in model_xzh.attributes){
+             if(attribute.columnKey){
+         %>
+         var $operations_edit = $("<span><a style='cursor: pointer;' onclick=${model_xzh.lowName}Edit('"+aData.id+"') class='deleteRowCls'>编辑</a></span>");
+         var $operations_detail = $("<span><a style='cursor: pointer;' onclick=detail('" + aData.id + "') class='deleteRowCls'>详情</a></span>");
+         var $operations_del = $("<span><a style='cursor: pointer;' onclick=confirmDel('"+aData.id+"') class='deleteRowCls'>删除</a></span>");
+          <% }} %>
+         <%
+            var listSize = model_xzh.attributes.~size;
+         %>
+        $("td:eq(${listSize})", nRow).empty();
+        <% for(attribute in model_xzh.attributes){
+                     if(attribute.columnKey){
+          %>
+        $("td:eq(${listSize})", nRow).append($operations_edit).append(" ").append($operations_detail).append(" ").append($operations_del);
+        <% }} %>
+    });
+}
+
+});
+
+
+
+ 
+ function confirmDel(id){
+		//询问框	
+		var confirmInfo = "";
+		   confirmInfo = "<div style='text-align: center;'>确认要删除该${model_xzh.alies}？</div>";
+		
+		layer.confirm(confirmInfo, {
+		  title:'提示',
+		  btn: ['确定','取消'] //按钮
+		}, function(){
+			${model_xzh.lowName}Delete(id);
+			layer.msg('操作成功', {
+			    time: 1000, //1s后自动关闭
+			  });
+		}, function(){
+		  
+		});	
+	}
+
+function ${model_xzh.lowName}Delete(id){
+	var aData = {};
+	aData.id = id;
+	submitUrl('./${model_xzh.lowName}/delete',aData ,function(data) {
+        console.log(data);
+        if (data.code == "000") {
+            layer.alert('删除成功！', {icon: 6 ,title: '提示', closeBtn: 0} , function(){
+                layer.closeAll();
+                datatable.fnDraw();
+            });
+        } else {
+            layer.alert('删除失败', {icon: 5,title: '告警'});
+        }
+        layer.closeAll('loading');
+    });
+}
+ 
+ /**
+  * 跳转编辑页面
+  */
+ function ${model_xzh.lowName}Edit(id){
+ 	$("#main-body").load("./${model_xzh.lowName}/${model_xzh.lowName}Edit.html?id="+id).attr("${model_xzh.lowName}Id",id);
+ }
+
+
+ /**
+  * 跳转到详情页面
+  * @param id
+  */
+ function detail(id){
+     $("#main-body").load("./${model_xzh.lowName}/${model_xzh.lowName}Detail.html?id="+id).attr("${model_xzh.lowName}Id",id);
+ }

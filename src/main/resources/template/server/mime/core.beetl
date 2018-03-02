@@ -1,0 +1,22 @@
+package ${project.pkgName}.core;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
+
+/**
+ * 实体与json映射<br>
+ * 实体转换为json字符串
+ *
+ * @author ${project.autor}
+ * @version [V1.0, ${project.dateString}]
+ */
+public class HibernateAwareObjectMapper extends ObjectMapper {
+
+    /**
+     * 使用父类方法改写构造
+     */
+    public HibernateAwareObjectMapper() {
+        registerModule(new Hibernate4Module());
+    }
+
+}

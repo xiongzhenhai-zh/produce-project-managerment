@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>管理系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="menu accordion layout" />
+    <link rel="stylesheet" type="text/css" href="./resources/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="row" id="main" style="display: none;margin-top: 15%;">
+    <div class="col-md-4"></div>
+    <div class="col-md-4" style="opacity: 0.9;">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                登陆页
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="userName" class="col-sm-2 control-label">用户名</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="userName" placeholder="请输入用户名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-sm-2 control-label">密码</label>
+                            <div class="col-sm-6">
+                                <input type="password" class="form-control" id="password" placeholder="请输入密码">
+                            </div>
+                        </div>
+                        <!--<div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-6">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id = "remenber"> 记住密码
+                                    </label>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="form-group">
+                            <div class="col-sm-offset-5 col-sm-10">
+                                <button type="submit" class="btn btn-primary" id="submit">登陆</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+
+</body>
+<script src="./resources/js/lib/jquery-2.1.1.min.js"></script>
+<script src="./resources/js/bootstrap.min.js"></script>
+<script>
+$(function () {
+    _init();
+    $('#submit').click(function () {
+        if(submitData()){
+            var str = window.location.href;
+            if (str.indexOf('?url=') > -1) {
+                if (str.substring(str.indexOf('?url=') + 5).length>0){
+                    window.location.href = str.substring(str.indexOf('?url=') + 5);
+                }else {
+                    window.location.href = "./main.html";
+                }
+            } else {
+                window.location.href = "./main.html";
+            }
+            return false;
+        }else{
+            alert("系统错误");
+        }
+    });
+});
+
+function submitData() {
+    var flage = false;
+    var data = {};
+    data.userName = $("#userName").val();
+    data.password = $("#password").val();
+    $.ajax({
+        url: "./user/common/toLogin",
+        type: "POST",
+        async:false,
+        data: JSON.stringify(data),
+        contentType: "application/json",
+        success: function (data) {
+            console.log(data);
+            if (data.code === "000") {
+                flage = true;
+            } else {
+                alert("用户名或密码错误");
+            }
+        },
+        error: function (data) {
+            alert("系统错误");
+        }
+    });
+    console.log("111");
+    return flage;
+}
+
+function _init() {
+    var data={};
+    $.ajax({
+        url: "./user/common/getLoginImg",
+        type: "POST",
+        data: JSON.stringify(data),
+        contentType: "application/json",
+        success: function (data) {
+            console.log(data);
+            if (data.code === "000"){
+                $('body').css('background-image', 'url("' + data.content + '")');
+            }
+        },
+        error: function (data) {
+
+        }
+    });
+    $('#main').show(1000);
+}
+</script>
+</html>

@@ -1,0 +1,143 @@
+var ele = [];
+$(document).ready(function () {
+    var ajax_url = location.hash.replace(/^#/, '');
+    if (ajax_url.length < 1) {
+        ajax_url = 'index.html';
+    }else{
+        LoadAjaxContent(ajax_url);
+    }
+    $('.main-menu').on('click', 'a', function (e) {
+        if ($(this).hasClass('ajax-link')) {
+            _initCrumbs($(this).attr('menuId'));
+            e.preventDefault();
+            var url = $(this).attr('href');
+            window.location.hash = url;
+            LoadAjaxContent(url);
+        }
+    });
+});
+
+//
+//  Function for load content from url and put in $('.ajax-content') block
+//
+function LoadAjaxContent(url) {
+    $('.preloader').show();
+    $.ajax({
+        mimeType: 'text/html; charset=utf-8', // ! Need set mimeType only when run from local file
+        url: url,
+        type: 'GET',
+        success: function (data) {
+            $('#ajax-content').html(data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+        },
+        dataType: "html",
+        async: false
+    });
+}
+
+
+/**
+ * 初始化面包屑
+ */
+function _initCrumbs(menuId){
+	var html = '<a href="index.html">首页</a>';
+	for (var i = 0; i < ele.length; i++) {
+            var second = ele[i].subPrivs;
+            if (second) {
+                for (var j = 0; j < second.length; j++) {
+                    if(second[j].id == menuId){
+						html += '<a><cite>'+ele[i].name+'</cite></a>';
+						html += '<a><cite>'+second[j].name+'</cite></a>';
+						$('#crumbs').html(html);
+						layui.element.render('crumb');
+						break;
+					}
+                }
+            }
+        }
+}
+
+function getMenu() {
+
+    /*submitUrl_Sync("getAllMenu", null, function (data) {
+        if (data.code == "000") {
+            obj = data.content;
+        } else {
+            warningAlert('获取用户权限失败！');
+        }
+    });*/
+    <% for(model_xzh in project.models){ %>
+    var ${model_xzh.lowName} = {};
+    ${model_xzh.lowName}.category="1";
+    ${model_xzh.lowName}.id=${model_xzh.id};
+    ${model_xzh.lowName}.identifyCode=null;
+    ${model_xzh.lowName}.menuIcon="./resources/img/home/sign_guide.png"
+    ${model_xzh.lowName}.menuSort=1;
+    ${model_xzh.lowName}.menuStat=null;
+    ${model_xzh.lowName}.name="${model_xzh.alies}";
+    ${model_xzh.lowName}.openUrl=null;
+    ${model_xzh.lowName}.pid=null;
+    ${model_xzh.lowName}.reamrk=null;
+    var ${model_xzh.lowName}1 = {};
+    ${model_xzh.lowName}1.category="1";
+    ${model_xzh.lowName}1.id=${model_xzh.id}1;
+    ${model_xzh.lowName}1.identifyCode=null;
+    ${model_xzh.lowName}1.menuIcon=null;
+    ${model_xzh.lowName}1.menuSort=6;
+    ${model_xzh.lowName}1.menuStat=null;
+    ${model_xzh.lowName}1.name="新建${model_xzh.alies}";
+    ${model_xzh.lowName}1.openUrl="./${model_xzh.lowName}/${model_xzh.lowName}Create.html";
+    ${model_xzh.lowName}1.pid=8;
+    ${model_xzh.lowName}1.reamrk=null;
+
+    var ${model_xzh.lowName}2 = {};
+    ${model_xzh.lowName}2.category="2";
+    ${model_xzh.lowName}2.id=${model_xzh.id}2;
+    ${model_xzh.lowName}2.identifyCode=null;
+    ${model_xzh.lowName}2.menuIcon=null;
+    ${model_xzh.lowName}2.menuSort=6;
+    ${model_xzh.lowName}2.menuStat=null;
+    ${model_xzh.lowName}2.name="${model_xzh.alies}列表";
+    ${model_xzh.lowName}2.openUrl="./${model_xzh.lowName}/${model_xzh.lowName}List.html";
+    ${model_xzh.lowName}2.pid=8;
+    ${model_xzh.lowName}2.reamrk=null;
+
+    var ${model_xzh.lowName}subPrivs = new Array();
+    ${model_xzh.lowName}subPrivs.push(${model_xzh.lowName}1);
+    ${model_xzh.lowName}subPrivs.push(${model_xzh.lowName}2);
+
+    ${model_xzh.lowName}.subPrivs=${model_xzh.lowName}subPrivs;
+    ele.push(${model_xzh.lowName});
+    <% } %>
+    return ele;
+}
+/**
+ * 初始化左边菜单树
+ * @private
+ */
+function _initMenu() {
+    var data = getMenu();
+    var htmlArr = [];
+    if (typeof(data) === 'object' && data.length > 0) {
+        for (var i = 0; i < data.length; i++) {
+            if (i === 0) {
+                htmlArr.push('<li class="layui-nav-item layui-nav-itemed dropdown">');
+            } else {
+                htmlArr.push('<li class="layui-nav-item dropdown">');
+            }
+            htmlArr.push('<a class="" menuId="'+data[i].id+'" href="javascript:;">' + data[i].name + '</a>');
+            var second = data[i].subPrivs;
+            if (second) {
+                htmlArr.push('<dl class="layui-nav-child">');
+                for (var j = 0; j < second.length; j++) {
+                    htmlArr.push('<dd><a class="ajax-link" menuId="'+second[j].id+'" href="' + second[j].openUrl + '">' + second[j].name + '</a></dd>');
+                }
+                htmlArr.push('</dl>');
+            }
+            htmlArr.push(' </li>');
+        }
+    }
+    $("#main-menu").html(htmlArr.join(''));
+}

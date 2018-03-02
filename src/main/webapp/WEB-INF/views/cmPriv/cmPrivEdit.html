@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="" />
+	<meta name="author" content="mime" />
+	<meta name="keywords" content="chats homeInfomation" />
+	<link rel="stylesheet" type="text/css" href="./resources/css/jquery.datables.min.css" />
+	<link rel="stylesheet" type="text/css" href="./resources/css/list.css" />
+	<link rel="stylesheet" type="text/css" href="./resources/css/validate.css" />
+	<link rel="stylesheet" type="text/css" href="./resources/css/_details.css" />
+	<link rel="stylesheet" type="text/css" href="./resources/css/laydate.css" />
+	<link rel="stylesheet" type="text/css" href="./resources/css/skins/laydate.css" />
+<title>权限</title>
+</head>
+<body>
+<form id="createCmPriv">
+	<div class="detailsWrap" style="height:auto;">
+		<div class="detailsWrapInner">
+			<!--第一层信息-->
+			<div class="detailsTitles">
+				<div class="detailsTitlesTitle">
+					编辑权限
+				</div>
+			</div>
+			
+			<div class="detailsItemOutWrap detailSectionTop">
+				<div class="detailsItemInnerRop">
+					<div class="detailsItemPDivPop">
+						菜单名称:
+					</div>
+					<div class=" detailsItemInputDiv" style="width: 400px;">
+							<input id="name" name = "name" type="text" />
+					</div>
+				</div>				
+			</div>
+			
+			<div class="detailsItemOutWrap detailSectionTop">
+				<div class="detailsItemInnerRop">
+					<div class="detailsItemPDivPop">
+						父权限编号:
+					</div>
+					<div class=" detailsItemInputDiv" style="width: 400px;">
+							<input id="pid" name = "pid" type="text" />
+					</div>
+				</div>				
+			</div>
+			
+			<div class="detailsItemOutWrap detailSectionTop">
+				<div class="detailsItemInnerRop">
+					<div class="detailsItemPDivPop">
+						权限类别:
+					</div>
+					<div class=" detailsItemInputDiv" style="width: 400px;">
+							<input id="category" name = "category" type="text" />
+					</div>
+				</div>				
+			</div>
+			
+			<div class="detailsItemOutWrap detailSectionTop">
+				<div class="detailsItemInnerRop">
+					<div class="detailsItemPDivPop">
+						菜单图标:
+					</div>
+					<div class=" detailsItemInputDiv" style="width: 400px;">
+							<input id="menuIcon" name = "menuIcon" type="text" />
+					</div>
+				</div>				
+			</div>
+			
+			<div class="detailsItemOutWrap detailSectionTop">
+				<div class="detailsItemInnerRop">
+					<div class="detailsItemPDivPop">
+						菜单展开状态 :
+					</div>
+					<div class=" detailsItemInputDiv" style="width: 400px;">
+							<input id="menuStat" name = "menuStat" type="text" />
+					</div>
+				</div>				
+			</div>
+			
+			<div class="detailsItemOutWrap detailSectionTop">
+				<div class="detailsItemInnerRop">
+					<div class="detailsItemPDivPop">
+						菜单显示顺序:
+					</div>
+					<div class=" detailsItemInputDiv" style="width: 400px;">
+							<input id="menuSort" name = "menuSort" type="text" />
+					</div>
+				</div>				
+			</div>
+			
+			<div class="detailsItemOutWrap detailSectionTop">
+				<div class="detailsItemInnerRop">
+					<div class="detailsItemPDivPop">
+						指向的URL:
+					</div>
+					<div class=" detailsItemInputDiv" style="width: 400px;">
+							<input id="openUrl" name = "openUrl" type="text" />
+					</div>
+				</div>				
+			</div>
+			
+			<div class="detailsItemOutWrap detailSectionTop">
+				<div class="detailsItemInnerRop">
+					<div class="detailsItemPDivPop">
+						按钮的标识:
+					</div>
+					<div class=" detailsItemInputDiv" style="width: 400px;">
+							<input id="identifyCode" name = "identifyCode" type="text" />
+					</div>
+				</div>				
+			</div>
+			
+			<div class="detailsItemOutWrap detailSectionTop">
+				<div class="detailsItemInnerRop">
+					<div class="detailsItemPDivPop">
+						备选字段:
+					</div>
+					<div class=" detailsItemInputDiv" style="width: 400px;">
+							<input id="reamrk" name = "reamrk" type="text" />
+					</div>
+				</div>				
+			</div>
+		</div>		
+
+		   <div class="detailsItemOutWrap detailSectionTop">				
+			   <div class="detailsItemOutWrap detailSectionTop">
+					<input class="detailsItemInput listButton" style="width:150px;height: 38px; margin-left:30%;" type="button" id="saveBtn" value="保存"/>
+					<input class="detailsItemInput listButton" style="width:150px;height: 38px; margin-left:30px;" type="button" id="cancelBtn" value="取消" />
+				</div>
+		  </div>	   						
+	</div>
+</form>
+</body>
+<script type="text/javascript" src="./resources/js/commonUtil.js" charset="utf-8"></script>
+<script type="text/javascript" src="./resources/js/cmPriv/cmPrivEdit.js"></script>
+</html>

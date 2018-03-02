@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>${project.alies}</title>
+    <link rel="stylesheet" href="resources/plugins/layui/css/layui.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">${project.alies}</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="">控制台</a></li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    熊
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退出</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree main-menu" lay-filter="test" id="main-menu">
+                <li class="layui-nav-item layui-nav-itemed dropdown">
+                    <a class="" href="javascript:;">所有商品</a>
+                    <dl class="layui-nav-child">
+                        <dd><a class="ajax-link" href="./page/create.html">创建</a></dd>
+                        <dd><a class="ajax-link" href="./page/list.html">列表</a></dd>
+                        <dd><a class="ajax-link" href="./page/edit.html">编辑</a></dd>
+                        <dd><a class="ajax-link" href="./page/detail.html">详情</a></dd>
+                    </dl>
+                </li>
+                <!--<li class="layui-nav-item dropdown">
+                    <a class="" href="javascript:;">所有商品</a>
+                    <dl class="layui-nav-child">
+                        <dd><a class="ajax-link" href="./page/create.html">创建</a></dd>
+                        <dd><a class="ajax-link" href="./page/list.html">列表</a></dd>
+                        <dd><a class="ajax-link" href="./page/edit.html">编辑</a></dd>
+                        <dd><a class="ajax-link" href="./page/detail.html">详情</a></dd>
+                    </dl>
+                </li>-->
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <blockquote class="layui-elem-quote layui-text" style="margin-bottom: 10px">
+            <span class="layui-breadcrumb" id="crumbs">
+              <a href="index.html">首页</a>
+              <!-- <a><cite>导航元素</cite></a> -->
+            </span>
+        </blockquote>
+        <!-- 内容主体区域 -->
+        <div id="ajax-content" style="padding: 15px;">欢迎您</div>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        底部固定区域
+    </div>
+</div>
+<script src="resources/plugins/jquery/jquery-2.1.0.min.js"></script>
+<script src="resources/plugins/layui/layui.js"></script>
+<script src="resources/js/commonUtil.js"></script>
+<script src="resources/js/main.js"></script>
+<script>
+    //JavaScript代码区域
+    $(document).ready(function () {
+        layui.use('element', function () {
+            var element = layui.element;
+            _initMenu();
+            element.render('nav');
+        });
+    });
+</script>
+</body>
+</html>

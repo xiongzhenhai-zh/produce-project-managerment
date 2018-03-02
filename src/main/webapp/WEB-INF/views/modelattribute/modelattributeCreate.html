@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content=""/>
+    <meta name="author" content="mime"/>
+    <meta name="keywords" content="chats homeInfomation"/>
+    <link rel="stylesheet" type="text/css" href="./resources/css/jquery.datables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="./resources/css/list.css"/>
+    <link rel="stylesheet" type="text/css" href="./resources/css/validate.css"/>
+    <link rel="stylesheet" type="text/css" href="./resources/css/_details.css"/>
+    <link rel="stylesheet" type="text/css" href="./resources/css/laydate.css"/>
+    <link rel="stylesheet" type="text/css" href="./resources/css/skins/laydate.css"/>
+    <title>表字段</title>
+</head>
+<body>
+<form id="createModelattribute">
+    <div class="detailsWrap" style="height:auto;">
+        <div class="detailsWrapInner">
+            <!--第一层信息-->
+            <div class="detailsTitles">
+                <div class="detailsTitlesTitle">
+                    新增表字段
+                </div>
+            </div>
+
+            <div class="detailsItemOutWrap detailSectionTop">
+                <div class="detailsItemInnerRop">
+                    <div class="detailsItemPDivPop">
+                        <font class="redStar">*</font>字段名:
+                    </div>
+                    <div class=" detailsItemInputDiv" style="width: 400px;">
+                        <input id="name" name="name" type="text" required/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detailsItemOutWrap detailSectionTop">
+                <div class="detailsItemInnerRop">
+                    <div class="detailsItemPDivPop">
+                        数据库字段名:
+                    </div>
+                    <div class=" detailsItemInputDiv" style="width: 400px;">
+                        <input id="dbname" name="dbname" type="text" placeholder="不填时与字段名一致"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detailsItemOutWrap detailSectionTop">
+                <div class="detailsItemInnerRop">
+                    <div class="detailsItemPDivPop">
+                        <font class="redStar">*</font>备注:
+                    </div>
+                    <div class=" detailsItemInputDiv" style="width: 400px;">
+                        <input id="alies" name="alies" type="text" required/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detailsItemOutWrap detailSectionTop">
+                <div class="detailsItemInnerRop">
+                    <div class="detailsItemPDivPop">
+                        字段类型:
+                    </div>
+                    <div class=" detailsItemInputDiv" style="width: 400px;">
+                        <select id="type">
+                            <option value="Integer">Integer</option>
+                            <option value="String">String</option>
+                            <option value="Date">Date</option>
+                            <option value="Long">Long</option>
+                            <option value="Double">Double</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="detailsItemOutWrap detailSectionTop">
+            <div class="detailsItemOutWrap detailSectionTop">
+                <input class="detailsItemInput listButton" style="width:150px;height: 38px; margin-left:30%;"
+                       type="button" id="saveBtn" value="保存"/>
+                <input class="detailsItemInput listButton" style="width:150px;height: 38px; margin-left:30px;"
+                       type="button" id="cancelBtn" value="取消"/>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+<script type="text/javascript" src="./resources/js/lib/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="./resources/js/lib/jquery.validate.js"></script>
+<script type="text/javascript" src="./resources/js/lib/messages_zh.js"></script>
+<script type="text/javascript" src="./resources/js/validatorUtil.js"></script>
+<script type="text/javascript" src="./resources/js/commonUtil.js" charset="utf-8"></script>
+<script type="text/javascript" src="./resources/js/modelattribute/modelattributeCreate.js"></script>
+</html>

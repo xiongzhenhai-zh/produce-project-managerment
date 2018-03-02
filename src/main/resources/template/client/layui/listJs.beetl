@@ -1,0 +1,128 @@
+layui.use(['table', 'form'], function () {
+        var $ = layui.$;
+        var whereData = {};
+        var table = layui.table;
+        table.render({
+            elem: '#${model_xzh.lowName}Table',
+            url: '${model_xzh.lowName}/selectPageList',
+            method: 'POST',
+            contentType: "application/json",
+            where: whereData,
+            request: {
+                pageName: 'currentPage', //页码的参数名称，默认：page
+                limitName: 'pageNum' //每页数据量的参数名，默认：limit
+            },
+            response: {
+                statusName: 'code', //数据状态的字段名称，默认：code
+                statusCode: 000, //成功的状态码，默认：0
+                msgName: 'desc', //状态信息的字段名称，默认：msg
+                countName: 'content.totalNum', //数据总数的字段名称，默认：count
+                dataName: 'content.list' //数据列表的字段名称，默认：data
+            },
+            cols: [[
+                  <%
+                  for(var i=0;i<model_xzh.attributes.~size;i++){
+                    if(i>0)println(",");
+                         switch(model_xzh.attributes[i].type){
+                                 case "String":
+                                         println("{field: '"+model_xzh.attributes[i].name+"', title: '"+model_xzh.attributes[i].alies+"'}");
+                                         break;
+                                 case "Date":
+                                         println("{field: '"+model_xzh.attributes[i].name+"', title: '"+model_xzh.attributes[i].alies+"', templet: function (data) { return new Date(data."+model_xzh.attributes[i].name+").pattern('yyyy-MM-dd hh:mm:ss'); }}");
+                                         break;
+                                 default:
+                                         println("{field: '"+model_xzh.attributes[i].name+"', title: '"+model_xzh.attributes[i].alies+"'}");
+                         }
+                  } %>
+
+                <% for(attribute in model_xzh.attributes){
+                    if(attribute.columnKey){
+                        println(",{field: '"+attribute.name+"', title: '操作', sort: false, align: 'center', toolbar: '#bar',fixed: 'right',minWidth:'200'}");
+                }} %>
+            ]]
+            ,
+            id: '${model_xzh.lowName}Table',
+            page: true,
+            done: function (res, curr, count) {
+                //如果是异步请求数据方式，res即为你接口返回的信息。
+                //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+                console.log(res);
+            }
+        });
+        //监听工具条
+        table.on('tool(table)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                ${model_xzh.lowName}Detail(data.id);
+            } else if (obj.event === 'del') {
+                layer.confirm('确定要删除？', function (index) {
+                    ${model_xzh.lowName}Delete(data.id);
+                    active['reload'] ? active['reload'].call(this) : '';
+                    //obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                ${model_xzh.lowName}Edit(data.id);
+            }
+        });
+
+        var active = {
+            reload: function () {
+                var demoReload = $('#demoReload');
+                //执行重载
+                table.reload('${model_xzh.lowName}Table', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    , where: whereData
+                });
+            }
+        };
+
+        // 渲染查询框
+        var form = layui.form
+            , layer = layui.layer;
+        //监听提交
+        form.on('submit(submitBut)', function (data) {
+            console.log(data.field.title);
+            whereData = data.field;
+            active['reload'] ? active['reload'].call(this) : '';
+            return false;
+        });
+        // 手动渲染部分表单
+        form.render();
+    });
+
+ /**
+  * 删除
+  */
+function ${model_xzh.lowName}Delete(id){
+    var aData = {};
+    aData.id = id;
+    submitUrl('./${model_xzh.lowName}/delete',aData ,function(data) {
+        if (data.code == "000") {
+            succMsg('删除成功！');
+        } else {
+            warningAlert('删除失败');
+        }
+        layer.closeAll('loading');
+    });
+}
+
+ /**
+  * 跳转编辑页面
+  */
+ function ${model_xzh.lowName}Edit(id){
+    $("#ajax-content").attr("dataId",id);
+ 	LoadAjaxContent("${model_xzh.lowName}/${model_xzh.lowName}Edit.html");
+ }
+
+
+ /**
+  * 跳转到详情页面
+  * @param id
+  */
+ function ${model_xzh.lowName}Detail(id){
+     $("#ajax-content").attr("dataId",id);
+     LoadAjaxContent("${model_xzh.lowName}/${model_xzh.lowName}Detail.html");
+ }

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>品类信息管理</title>
+	<link rel="stylesheet" type="text/css" href="./resources/css/validate.css" />	
+    <link rel="stylesheet" type="text/css" href="./resources/css/list.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/css/buttons.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/fileuploadplugins/css/fileinput.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/css/base/base.css" />
+</head>
+<body>
+<form id="form">
+	<div class="DetailPart">
+		<div class="DetailTitle">商户信息</div>
+		<div class="DetailTop">
+			<div class="DetailItemLeft">
+				<div class="DetailItemDesc">
+					<font class="redStar">*</font>菜单名称:
+				</div>
+				<div class="DetailItemDetailDiv">
+					<div id="name"></div>
+				</div>
+			</div>
+		</div>
+		<div class="DetailTop">
+			<div class="DetailItemLeft">
+				<div class="DetailItemDesc">
+					<font class="redStar">*</font>父权限编号:
+				</div>
+				<div class="DetailItemDetailDiv">
+					<div id="pid"></div>
+				</div>
+			</div>
+		</div>
+		<div class="DetailTop">
+			<div class="DetailItemLeft">
+				<div class="DetailItemDesc">
+					<font class="redStar">*</font>权限类别:
+				</div>
+				<div class="DetailItemDetailDiv">
+					<div id="category"></div>
+				</div>
+			</div>
+		</div>
+		<div class="DetailTop">
+			<div class="DetailItemLeft">
+				<div class="DetailItemDesc">
+					<font class="redStar">*</font>菜单图标:
+				</div>
+				<div class="DetailItemDetailDiv">
+					<div id="menuIcon"></div>
+				</div>
+			</div>
+		</div>
+		<div class="DetailTop">
+			<div class="DetailItemLeft">
+				<div class="DetailItemDesc">
+					<font class="redStar">*</font>菜单展开状态 :
+				</div>
+				<div class="DetailItemDetailDiv">
+					<div id="menuStat"></div>
+				</div>
+			</div>
+		</div>
+		<div class="DetailTop">
+			<div class="DetailItemLeft">
+				<div class="DetailItemDesc">
+					<font class="redStar">*</font>菜单显示顺序:
+				</div>
+				<div class="DetailItemDetailDiv">
+					<div id="menuSort"></div>
+				</div>
+			</div>
+		</div>
+		<div class="DetailTop">
+			<div class="DetailItemLeft">
+				<div class="DetailItemDesc">
+					<font class="redStar">*</font>指向的URL:
+				</div>
+				<div class="DetailItemDetailDiv">
+					<div id="openUrl"></div>
+				</div>
+			</div>
+		</div>
+		<div class="DetailTop">
+			<div class="DetailItemLeft">
+				<div class="DetailItemDesc">
+					<font class="redStar">*</font>按钮的标识:
+				</div>
+				<div class="DetailItemDetailDiv">
+					<div id="identifyCode"></div>
+				</div>
+			</div>
+		</div>
+		<div class="DetailTop">
+			<div class="DetailItemLeft">
+				<div class="DetailItemDesc">
+					<font class="redStar">*</font>备选字段:
+				</div>
+				<div class="DetailItemDetailDiv">
+					<div id="reamrk"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+	<div class="OKDivContainer">
+		<div class="OKDiv" id="Cancel">返回</div>	
+	</div>
+</body>
+<script src="./resources/js/lib/jquery.validate.js" type="text/javascript"></script>
+<script src="./resources/js/lib/messages_zh.js" type="text/javascript"></script>
+<script type="text/javascript" src="./resources/fileuploadplugins/js/fileinput.js"></script>
+<script type="text/javascript" src="./resources/fileuploadplugins/js/fileinput_locale_zh.js"></script>
+<script type="text/javascript" src="./resources/layer/layer.js"></script>
+<script type="text/javascript" src="./resources/js/jquery.form.js" charset="utf-8"></script>
+<script type="text/javascript" src="./resources/js/validatorUtil.js" charset="utf-8"></script>
+<script type="text/javascript" src="./resources/js/commonUtil.js" charset="utf-8"></script>
+<script type="text/javascript" src="./resources/js/cmPriv/cmPrivDetail.js"></script>
+</html>

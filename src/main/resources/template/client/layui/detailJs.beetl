@@ -1,0 +1,53 @@
+/**
+ * Created by xzh on 2018/2/7.
+ */
+$(document).ready(function () {
+    $('#returnBut').click(function(){
+         layer.confirm('确定要放弃修改？', function (index) {
+             layer.close(index);
+             LoadAjaxContent("${model_xzh.lowName}/${model_xzh.lowName}List.html");
+        });
+    });
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+
+        //日期
+       // laydate.render({ elem: '#date' });
+
+       <% var width =  100/(model_xzh.attributes.~size+1);
+         for(var i=0;i<model_xzh.attributes.~size;i++){
+            switch(model_xzh.attributes[i].type){
+                    case "Date":
+                            println("laydate.render({ elem: '#"+model_xzh.attributes[i].name+"' });");
+                            break;
+                    default:
+                            break;
+            }
+        } %>
+
+        // 手动渲染部分表单
+        form.render();
+        _init({id:$("#ajax-content").attr("dataId")});
+    });
+});
+
+
+/**
+ * 初始化
+ */
+function _init(reqObj){
+    submitUrl('./${model_xzh.lowName}/queryById',reqObj ,function(data) {
+        console.log(data);
+        if (data.code == "000") {
+              <% for(modelAttribute in model_xzh.attributes){ %>
+                $("#${modelAttribute.name}").val(data.content.${modelAttribute.name});
+                <% } %>
+        } else {
+            warningAlert('查询失败');
+        }
+        layer.closeAll('loading');
+     });
+}

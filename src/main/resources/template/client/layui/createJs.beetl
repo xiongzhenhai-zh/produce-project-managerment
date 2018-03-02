@@ -1,0 +1,74 @@
+/**
+ * Created by xzh on 2018/2/7.
+ */
+$(document).ready(function () {
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+
+        //日期
+       // laydate.render({ elem: '#date' });
+
+       <% var width =  100/(model_xzh.attributes.~size+1);
+         for(var i=0;i<model_xzh.attributes.~size;i++){
+            switch(model_xzh.attributes[i].type){
+                    case "Date":
+                            println("laydate.render({ elem: '#"+model_xzh.attributes[i].name+"' });");
+                            break;
+                    default:
+                            break;
+            }
+         } %>
+
+
+        //创建一个编辑器
+       // var editIndex = layedit.build('LAY_demo_editor');
+
+        //自定义验证规则
+        /* form.verify({
+            title: function (value) {
+                if (value.length < 5) {
+                    return '标题至少得5个字符啊';
+                }
+            }
+            , pass: [/(.+){6,12}$/, '密码必须6到12位']
+            , content: function (value) {
+                layedit.sync(editIndex);
+            }
+        });*/
+
+
+        //监听提交
+        form.on('submit(submitBut)', function (data) {
+            _save();
+            return false;
+        });
+        // 手动渲染部分表单
+        form.render();
+
+    });
+});
+
+
+/**
+ * 保存
+ */
+function _save(){
+    //提交保存数据
+    var ${model_xzh.lowName}Info = {};
+    <% for(modelAttribute in model_xzh.attributes){ %>
+    ${model_xzh.lowName}Info.${modelAttribute.name} = $("#${modelAttribute.name}").val();
+    <% } %>
+
+    submitUrl('./${model_xzh.lowName}/add',${model_xzh.lowName}Info ,function(data) {
+        console.log(data);
+        if (data.code == "000") {
+             succMsg('新增成功！');
+        } else {
+            warningAlert('新增失败');
+        }
+        layer.closeAll('loading');
+     });
+}

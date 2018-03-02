@@ -1,0 +1,75 @@
+package ${project.pkgName}.controller;
+
+import java.io.Serializable;
+
+import org.apache.commons.lang.StringUtils;
+
+import ${project.pkgName}.core.ResultBean;
+import ${project.pkgName}.enums.ErrorCode;
+
+/**
+ * 控制器基类<br>
+ * 提供公共方法
+ *
+ * @author ${project.autor}
+ * @version [V1.0, ${project.dateString}]
+ */
+public class BaseController {
+
+    /**
+     * 
+     * 功能描述: <br>
+     * 获取resultBean
+     *
+     * @param code 结果码
+     * @return 处理结果
+     */
+    protected ResultBean getResultBean(ErrorCode code) {
+        return getResultBean(code, null, null);
+    }
+
+    /**
+     * 
+     * 功能描述: <br>
+     * 获取resultBean
+     *
+     * @param code 结果码
+     * @param accessToken 用户token
+     * @return 处理结果
+     */
+    protected ResultBean getResultBean(ErrorCode code, String accessToken) {
+        return getResultBean(code, accessToken, null);
+    }
+
+    /**
+     * 
+     * 功能描述: <br>
+     * 获取resultBean
+     *
+     * @param code 结果码
+     * @param content 返回内容
+     * @return 处理结果
+     */
+    protected ResultBean getResultBean(ErrorCode code, Serializable content) {
+        return getResultBean(code, null, content);
+    }
+
+    /**
+     * 
+     * 功能描述: <br>
+     * 获取resultBean
+     *
+     * @param code 结果码
+     * @param accessToken 用户token
+     * @param content 返回内容
+     * @return 处理结果
+     */
+    protected ResultBean getResultBean(ErrorCode code, String accessToken, Serializable content) {
+        ResultBean result = null;
+        String codeValue = code.getErrorCode();
+        if (StringUtils.isNotBlank(codeValue)) {
+            result = new ResultBean(codeValue, code.getErrorDesc(), accessToken, content);
+        }
+        return result;
+    }
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>品类信息管理</title>
+	<link rel="stylesheet" type="text/css" href="./resources/css/validate.css" />	
+    <link rel="stylesheet" type="text/css" href="./resources/css/list.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/css/buttons.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/fileuploadplugins/css/fileinput.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/css/base/base.css" />
+</head>
+<body>
+<form id="form">
+	<div class="DetailPart">
+		<div class="DetailTitle">商户信息</div>
+		<div class="DetailTop">
+			<div class="DetailItemLeft">
+				<div class="DetailItemDesc">
+					<font class="redStar">*</font>字段名:
+				</div>
+				<div class="DetailItemDetailDiv">
+					<div id="name"></div>
+				</div>
+			</div>
+		</div>
+		<div class="DetailTop">
+			<div class="DetailItemLeft">
+				<div class="DetailItemDesc">
+					<font class="redStar">*</font>数据库字段名:
+				</div>
+				<div class="DetailItemDetailDiv">
+					<div id="dbname"></div>
+				</div>
+			</div>
+		</div>
+		<div class="DetailTop">
+			<div class="DetailItemLeft">
+				<div class="DetailItemDesc">
+					<font class="redStar">*</font>备注:
+				</div>
+				<div class="DetailItemDetailDiv">
+					<div id="alies"></div>
+				</div>
+			</div>
+		</div>
+		<div class="DetailTop">
+			<div class="DetailItemLeft">
+				<div class="DetailItemDesc">
+					<font class="redStar">*</font>字段类型:
+				</div>
+				<div class="DetailItemDetailDiv">
+					<div id="type"></div>
+				</div>
+			</div>
+		</div>
+		<div class="DetailTop">
+			<div class="DetailItemLeft">
+				<div class="DetailItemDesc">
+					<font class="redStar">*</font>创建时间:
+				</div>
+				<div class="DetailItemDetailDiv">
+					<div id="createTime"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+	<div class="OKDivContainer">
+		<div class="OKDiv" id="Cancel">返回</div>	
+	</div>
+</body>
+<script src="./resources/js/lib/jquery.validate.js" type="text/javascript"></script>
+<script src="./resources/js/lib/messages_zh.js" type="text/javascript"></script>
+<script type="text/javascript" src="./resources/fileuploadplugins/js/fileinput.js"></script>
+<script type="text/javascript" src="./resources/fileuploadplugins/js/fileinput_locale_zh.js"></script>
+<script type="text/javascript" src="./resources/layer/layer.js"></script>
+<script type="text/javascript" src="./resources/js/jquery.form.js" charset="utf-8"></script>
+<script type="text/javascript" src="./resources/js/validatorUtil.js" charset="utf-8"></script>
+<script type="text/javascript" src="./resources/js/commonUtil.js" charset="utf-8"></script>
+<script type="text/javascript" src="./resources/js/modelattribute/modelattributeDetail.js"></script>
+</html>

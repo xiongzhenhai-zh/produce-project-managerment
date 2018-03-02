@@ -1,0 +1,131 @@
+﻿*{
+	font-family: "Microsoft Yahei";
+}
+p{
+	-webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+}
+body{
+	background:#F1F2F7;
+	text-align:center;
+	margin:0px;
+}
+.header-footer-bgcolor{
+	background:#111b22;
+	width:100%;
+}
+.login-box-font-color{
+	color:#ffffff;
+}
+.header{height:80px;}
+.header img{float:left;}
+.footer{height:32px;position:fixed;bottom:0px;}
+.footer p{color:#e4e4e4;font-size:12px;float:right;margin-top:8px;padding-right:30px;}
+.login-contain{	/*login层*/
+	width:100%;
+	position:absolute;
+	bottom:32px;
+	top:80px;
+	background:url(../img/login/background.jpg) center top no-repeat;
+	/*background-size:100% 100%;*/
+	background-size:cover; 
+	min-height:500px;}
+.login-box{	/*login box*/
+	width:360px;
+	height:350px;
+	top:140px;
+	background:#111b22;
+	margin:0 auto;
+	position:relative;
+	background: rgba(0, 0, 0, 0.6);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+	/*filter:alpha(opacity=50); IE滤镜，透明度50%
+	-moz-opacity:0.5; Firefox私有，透明度50%
+	opacity:0.5;其他，透明度50%*/
+}
+.cornerShow{
+	position:relative;
+	top:56px;
+	width:auto;
+	margin-left:50px;
+	margin-right:50px;
+	background:red;
+	display:none;
+}
+.cornerShow font{
+	float:left;
+	font-size:16px;
+	color:#ffffff;
+	margin-right:24px;
+	margin-bottom:26px;
+	cursor:pointer;
+}
+.cornerShow font:hover{
+	color:#07ccdf;
+}
+
+/*备份*/
+.alpha60 {
+	/* Fallback for web browsers that doesn't support RGBa */ background: rgb(0, 0, 0); 
+	/* RGBa with 0.6 opacity */ background: rgba(0, 0, 0, 0.6); 
+	/* For IE 5.5 - 7*/ 
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000); 
+	/* For IE 8*/ -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)"; 
+} 
+
+.login-box-title-font{
+	height:24px;
+	font-size:24px;
+	position:relative;
+	top:26px;
+	padding-bottom:30px;
+	margin-bottom:30px;
+}
+.login-box-img-wrap{
+	float:left;
+	margin-left:38px;
+	height:48px;
+	width:48px;
+	text-align:center;
+	background:#d3d9dc;
+}
+.login-box-input-wrap img{
+	padding-left:6px;
+	padding-top:12px;
+	position:relative;
+}
+.login-box-input-wrap input{
+	float:left;
+	height:46px;
+	width:220px;
+	font-size:14px;
+	color:#bbbbbb;
+	padding-left:16px;
+}
+input[type="button"]{
+	font-size:20px;
+	width:284px;
+	background-color:#07CEDF;	
+	margin-left:38px;
+	border: 1px solid #07cedf;
+	color:#fff;
+}
+input[type="text"],input[type="password"]{
+	border:1px solid #ffffff;
+	border:0;
+	outline:none;
+}
+.login-box-input-wrap{
+	width:100%;
+	height:48px;
+	padding-bottom:15px;
+}
+.login-box-button{
+	margin-top:15px;
+}
+.err_msg{
+	color:#fff;
+	margin-top:10px;
+	display:none;
+}

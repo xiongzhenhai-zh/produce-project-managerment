@@ -1,0 +1,41 @@
+use ${imerlgo.databaseName};
+
+<%
+    for(model_xzh in imerlgo.models){
+        print('CREATE TABLE if Not Exists '+ model_xzh.dbName +'(');
+        print('\n');
+        for(modelAttribute in model_xzh.attributes){
+
+            switch(modelAttribute.type){
+                    case "String":
+                            print(modelAttribute.dbName+' varchar(255) comment "'+modelAttribute.alies+'",');
+                            print('\n');
+                            break;
+                    case "Integer":
+                            print(modelAttribute.dbName+' int comment "'+modelAttribute.alies+'",');
+                            print('\n');
+                            break;
+                    case "Long":
+                            print(modelAttribute.dbName+' bigint(11) comment "'+modelAttribute.alies+'",');
+                            print('\n');
+                            break;
+                    case "Date":
+                             print(modelAttribute.dbName+' datetime comment "'+modelAttribute.alies+'",');
+                             print('\n');
+                            break;
+                    case "BigDecimal":
+                             print(modelAttribute.dbName+' decimal(8,2) comment "'+modelAttribute.alies+'",');
+                             print('\n');
+                            break;
+                    default:
+                            print(modelAttribute.dbName+' varchar(255) comment "'+modelAttribute.alies+'",');
+                            print('\n');
+                            break;
+            }
+         }
+        print('primary key (ID)');
+        print('\n');
+        print(') ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT="' + model_xzh.alies + '";');
+        print('\n');
+    }
+%>

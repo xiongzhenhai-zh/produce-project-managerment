@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:task="http://www.springframework.org/schema/task" xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+    <!-- 资源文件加载 -->  
+    <context:property-placeholder location="classpath:properties/*.properties" file-encoding="utf-8"/>  
+    <!-- 自动扫描的包名 -->  
+    <context:component-scan base-package="com.carejava.duce.ject.web.controller"/>  
+    <!-- 使用cglib的动态代理，为了给controller做切面用 -->  
+    <aop:aspectj-autoproxy proxy-target-class="true"/>  
+    <!-- 添加注解驱动 -->  
+    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager"> 
+        <mvc:message-converters> 
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"> 
+                <property name="objectMapper"> 
+                    <bean class="com.carejava.duce.ject.web.core.HibernateAwareObjectMapper">
+                        <property name="dateFormat">
+                            <bean class="java.text.SimpleDateFormat">
+                                <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss" />
+                            </bean>
+                        </property>
+                    </bean>
+                </property> 
+            </bean> 
+        </mvc:message-converters> 
+    </mvc:annotation-driven>  
+    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean"> 
+        <property name="favorPathExtension" value="false"/> 
+    </bean>  
+    <!-- 使用默认的Servlet来响应静态文件。 -->  
+    <!-- DispatcherServlet把找不到的请求映射到默认的servlet，从而实现处理静态资源的请求 -->  
+    <mvc:default-servlet-handler/>  
+    <!-- 配置国际化拦截器 -->  
+    <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"> 
+        <property name="paramName" value="lang"/> 
+    </bean>  
+    <!-- 请求处理器 -->  
+    <bean id="requestMappingHandlerMapping" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>  
+    <!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->  
+    <mvc:resources mapping="/resources/**" location="/WEB-INF/resources/"/>  
+    <mvc:resources mapping="/**" location="/WEB-INF/views/"/>
+
+    <!-- 创建一个通用的多部分解析器 -->  
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
+        <property name="defaultEncoding" value="UTF-8"/>  
+        <property name="maxUploadSize" value="52428800"/> 
+    </bean> 
+</beans>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>${project.alies}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<meta name="keywords" content="menu accordion layout" />
+	<link rel="stylesheet" type="text/css" href="./resources/css/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/css/jquery-ui-themes.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/css/util.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/css/main.css" />
+
+    <script type="text/javascript" src="./resources/js/lib/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="./resources/js/lib/jquery-ui.js"></script>
+    <script type="text/javascript" src="./resources/js/lib/jquery.layout-latest.js"></script>
+	<link rel="shortcut icon" href="./resources/img/home/collections_24px.ico"/>
+	<link rel="bookmark" href="./resources/img/home/collections_24px.ico"/>
+</head>
+<body>
+
+<div class="ui-layout-west" id="menu-tree">
+	<img src="./resources/img/home/logo.png" />
+	<div id="accordion">
+		<!-- 活动菜单 -->
+		<div class="accordion-item-contain menu-font-color" id="managerSecondLevel">
+		</div>
+    </div>
+	<div class="menu-bottom-font">
+		<!--© 2015  carejava<br/>
+		   -->
+	</div>
+</div>
+
+<!--    页面右侧主体     -->
+<div class="ui-layout-center" id="rightLayout">
+	<!--div class="main-header"></div>
+	<div class="main-body" style="background:red;width:100%;position:relative;height:100%;">123</div-->
+	<div class="ui-layout-north" id="main-header">
+		<div class="main-header-p-left main-font-color" id="main-header-title">
+			hi，您好，晚上好 !
+		</div>
+		<div class="main-header-p-right right-link-font-color">
+			<div id="quitAccount">退出帐号</div>
+			<!--
+			<div id="showPassword" style="cursor:pointer;">修改密码</div>
+			<div class="changePasswordDiv" style="display:none;">
+				<label for="originPassword">旧密码：</label>
+				<input type="password" name="originPassword" id="originPassword" />
+				<label for="newPassword">新密码：</label>
+				<input type="password" name="newPassword" id="newPassword" />
+				<label for="confirmPassword">确认密码：</label>
+				<input type="password" name="confirmPassword" id="confirmPassword" />
+				<input type="button" id="changePassword" value="确认">
+			</div>
+			-->
+		</div>
+	</div>
+	<div class="ui-layout-center" id="main-body">
+	</div>
+	<div id="currentAuditPeosonFlow" style="display:none;">
+		当前提报人:<font>您好</font>
+	</div>
+	<div class="hiddenPreviewDiv" id="mainPreviewDiv" style="display:none;">
+		<div class="recieveInnerDiv">
+			<div class="recieveTitle">
+			</div>
+			<div class="recieveBody"></div>
+			<div class="recieveFoot">
+				<button class="mainPreviewButton mainOk">确定</button>
+				<button class="mainPreviewButton mainCancel">取消</button>
+			</div>
+		</div>
+	</div>
+	<div class="hiddenPreviewDiv" id="alertPreviewDiv" style="display:none;">
+		<div class="alertInnerDiv">
+			<div class="alertBody"></div>
+			<div class="alertFoot">
+				<button class="alertButton alertOk">确定</button>
+				<button class="alertButton alertCancel" style="display:none;">取消</button>
+			</div>
+		</div>
+	</div>
+	<div class="hiddenPreviewImageDiv">
+		<div class="imageInnerDiv">
+		</div>
+	</div>
+</div>
+</body>
+<script type="text/javascript" src="./resources/js/common.js"></script>
+<script type="text/javascript" src="./resources/js/main.js"></script>
+<script type="text/javascript" src="./resources/layer/layer.js"></script>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>生成记录管理</title>
+	<link rel="stylesheet" type="text/css" href="./resources/css/validate.css" />	
+    <link rel="stylesheet" type="text/css" href="./resources/css/list.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/css/buttons.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/css/base/base.css" />
+</head>
+<body>
+<form id="form">
+	<div class="DetailPart">
+		<div class="DetailTitle">生成记录</div>
+		<div class="DetailTop">
+			<div class="DetailItemLeft">
+				<div class="DetailItemDesc">
+					<font class="redStar">*</font>主键:
+				</div>
+				<div class="DetailItemDetailDiv">
+					<div id="id"></div>
+				</div>
+			</div>
+		</div>
+		<div class="DetailTop">
+			<div class="DetailItemLeft">
+				<div class="DetailItemDesc">
+					<font class="redStar">*</font>用户ID:
+				</div>
+				<div class="DetailItemDetailDiv">
+					<div id="userId"></div>
+				</div>
+			</div>
+		</div>
+		<div class="DetailTop">
+			<div class="DetailItemLeft">
+				<div class="DetailItemDesc">
+					<font class="redStar">*</font>文件路径:
+				</div>
+				<div class="DetailItemDetailDiv">
+					<div id="filePath"></div>
+				</div>
+			</div>
+		</div>
+		<div class="DetailTop">
+			<div class="DetailItemLeft">
+				<div class="DetailItemDesc">
+					<font class="redStar">*</font>系统类型:
+				</div>
+				<div class="DetailItemDetailDiv">
+					<div id="sysType"></div>
+				</div>
+			</div>
+		</div>
+		<div class="DetailTop">
+			<div class="DetailItemLeft">
+				<div class="DetailItemDesc">
+					<font class="redStar">*</font>创建类型:
+				</div>
+				<div class="DetailItemDetailDiv">
+					<div id="createTime"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+	<div class="OKDivContainer">
+		<div class="OKDiv" id="Cancel">返回</div>	
+	</div>
+</body>
+<script type="text/javascript" src="./resources/layer/layer.js"></script>
+<script type="text/javascript" src="./resources/js/commonUtil.js" charset="utf-8"></script>
+<script type="text/javascript" src="./resources/js/produceRecord/produceRecordDetail.js"></script>
+</html>

@@ -1,0 +1,18 @@
+.listWrap{
+	position:relative;    
+	width: auto;
+    margin-left: 30px;
+    margin-right: 30px;
+	/*background:#f0f2f3;*/
+	background:#fff;
+}
+#example_wrapper{
+	position:relative;
+}
+.listWrap td{
+	text-align:center;
+}
+.listWrap th{
+	font-size:12px;
+	padding:10px 0px !important;
+}

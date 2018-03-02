@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.carejava.duce.ject.web.dao.ModelMapper">
+    <resultMap id="BaseResultMap" type="com.carejava.duce.ject.web.entity.ModelEntity">
+        <result column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="DBNAME" property="dbname" jdbcType="VARCHAR"/>
+        <result column="ALIES" property="alies" jdbcType="VARCHAR"/>
+        <result column="IDTYPE" property="idtype" jdbcType="VARCHAR"/>
+        <result column="attribute_id" property="attributeIds" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ID,NAME,DBNAME,ALIES,IDTYPE,CREATE_TIME,attribute_id,user_id
+    </sql>
+    <insert id="insert" parameterType="com.carejava.duce.ject.web.entity.ModelEntity">
+        insert into MODEL( ID,NAME,DBNAME,ALIES,IDTYPE,CREATE_TIME,attribute_id,user_id )
+        values ( #{id},#{name},#{dbname},#{alies},#{idtype},#{createTime},#{attributeIds},#{userId} )
+    </insert>
+    <update id="update" parameterType="com.carejava.duce.ject.web.entity.ModelEntity">
+        update MODEL 
+            <set>
+                <if test="id != null">
+                    ID = #{id},
+                </if>
+                <if test="name != null">
+                    NAME = #{name},
+                </if>  
+                <if test="dbname != null">
+                    DBNAME = #{dbname},
+                </if>  
+                <if test="alies != null">
+                    ALIES = #{alies},
+                </if>  
+                <if test="idtype != null">
+                    IDTYPE = #{idtype},
+                </if>  
+                <if test="createTime != null">
+                    CREATE_TIME = #{createTime},
+                </if>
+                <if test="attributeIds != null">
+                    attribute_id = #{attributeIds},
+                </if>
+                <if test="userId != null">
+                    user_id =#{userId},
+                </if>
+
+            </set>  
+            where ID = #{id} 
+         
+    </update>
+    <update id="delete" parameterType="com.carejava.duce.ject.web.entity.ModelEntity">
+        delete from MODEL where ID = #{id} 
+    </update>
+    <select id="selectCount" parameterType="com.carejava.duce.ject.web.in.vo.ModelVO" resultType="java.lang.Integer">
+        select count(1) from MODEL 
+            <where>
+                <if test="name != null">
+                    and NAME like #{name}
+                </if>  
+                <if test="dbname != null">
+                    and DBNAME like #{dbname}
+                </if>  
+                <if test="alies != null">
+                    and ALIES like #{alies}
+                </if>  
+                <if test="idtype != null">
+                    and IDTYPE = #{idtype}
+                </if>  
+                <if test="createTime != null">
+                    and CREATE_TIME = #{createTime}
+                </if>
+                <if test="attributeIds != null">
+                    and attribute_id = #{attributeIds}
+                </if>
+                <if test="userId != null">
+                    and user_id =#{userId}
+                </if>
+            </where> 
+         
+    </select>
+    <select id="selectPageList" parameterType="com.carejava.duce.ject.web.in.vo.ModelVO" resultMap="BaseResultMap">
+        select 
+            <include refid="Base_Column_List"/> from MODEL
+            <where>
+                <if test="name != null">
+                    and NAME like #{name}
+                </if>  
+                <if test="dbname != null">
+                    and DBNAME like #{dbname}
+                </if>  
+                <if test="alies != null">
+                    and ALIES like #{alies}
+                </if>  
+                <if test="idtype != null">
+                    and IDTYPE = #{idtype}
+                </if>  
+                <if test="createTime != null">
+                    and CREATE_TIME = #{createTime}
+                </if>
+                <if test="attributeIds != null">
+                    and attribute_id = #{attributeIds}
+                </if>
+                <if test="userId != null">
+                    and user_id =#{userId}
+                </if>
+            </where>  
+            limit #{offset},#{pageNum} 
+         
+    </select>
+    <select id="queryById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select  
+        <include refid="Base_Column_List"/>  
+        from MODEL where ID = #{id} 
+    </select>
+    <select id="queryAll" resultMap="BaseResultMap">
+        select  
+        <include refid="Base_Column_List"/>  
+        from MODEL 
+    </select>
+</mapper>

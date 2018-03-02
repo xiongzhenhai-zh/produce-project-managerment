@@ -1,0 +1,16 @@
+input.error { border: 1px solid red; }
+textarea.error { border: 1px solid red; }
+label.error {
+
+  padding-left: 16px;
+
+  padding-bottom: 2px;
+
+  font-weight: bold;
+
+  color: #EA5200;
+}
+
+label#period-error {
+  padding-left: 30px;
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>用户管理</title>
+	<link rel="stylesheet" type="text/css" href="./resources/css/validate.css" />	
+    <link rel="stylesheet" type="text/css" href="./resources/css/list.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/css/buttons.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/css/base/base.css" />
+</head>
+<body>
+<form id="form">
+	<div class="DetailPart">
+		<div class="DetailTitle">用户</div>
+		<div class="DetailTop">
+			<div class="DetailItemLeft">
+				<div class="DetailItemDesc">
+					<font class="redStar">*</font>用户名:
+				</div>
+				<div class="DetailItemDetailDiv">
+					<div id="userName"></div>
+				</div>
+			</div>
+		</div>
+		<div class="DetailTop">
+			<div class="DetailItemLeft">
+				<div class="DetailItemDesc">
+					<font class="redStar">*</font>密码:
+				</div>
+				<div class="DetailItemDetailDiv">
+					<div id="password"></div>
+				</div>
+			</div>
+		</div>
+		<div class="DetailTop">
+			<div class="DetailItemLeft">
+				<div class="DetailItemDesc">
+					<font class="redStar">*</font>创建时间:
+				</div>
+				<div class="DetailItemDetailDiv">
+					<div id="createTime"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+	<div class="OKDivContainer">
+		<div class="OKDiv" id="Cancel">返回</div>	
+	</div>
+</body>
+<script type="text/javascript" src="./resources/layer/layer.js"></script>
+<script type="text/javascript" src="./resources/js/commonUtil.js" charset="utf-8"></script>
+<script type="text/javascript" src="./resources/js/user/userDetail.js"></script>
+</html>

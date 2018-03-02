@@ -1,0 +1,60 @@
+<form id="from" class="layui-form" action="" >
+    <blockquote class="layui-elem-quote layui-text" style="background: #eff8fb;margin-bottom: 0px;">
+            <span style="font-size: x-large">新增</span>
+    </blockquote>
+    <div class="layui-row" style="background: #f2f2f2;padding: 10px" >
+        <%
+                    var listSize = model_xzh.attributes.~size/2;
+                 %>
+                  <% if((model_xzh.attributes.~size)%2 == 0){ %>
+                  <% for(var i=0;i<listSize;i++){ var index = i+i;%>
+                <div class="layui-form-item layui-col-md10 layui-col-md-offset1">
+                    <div class="layui-col-md6">
+                        <label class="layui-form-label">${model_xzh.attributes[index].alies}:</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="${model_xzh.attributes[index].name}" id="${model_xzh.attributes[index].name}" autocomplete="off" class="layui-input">
+                    </div>
+                    </div>
+                    <div class="layui-col-md6">
+                        <label class="layui-form-label">${model_xzh.attributes[index+1].alies}:</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="${model_xzh.attributes[index+1].name}" id="${model_xzh.attributes[index+1].name}" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                </div>
+                  <% } %>
+                  <% } else { %>
+                  <% for(var i=0;i<listSize-1;i++){ var index = i+i;%>
+                <div class="layui-form-item layui-col-md10 layui-col-md-offset1">
+                    <div class="layui-col-md6">
+                        <label class="layui-form-label">${model_xzh.attributes[index].alies}:</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="${model_xzh.attributes[index].name}" id="${model_xzh.attributes[index].name}" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-col-md6">
+                        <label class="layui-form-label">${model_xzh.attributes[index+1].alies}:</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="${model_xzh.attributes[index+1].name}" id="${model_xzh.attributes[index+1].name}" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+                 <div class="layui-form-item layui-col-md10 layui-col-md-offset1">
+                    <div class="layui-col-md6">
+                        <label class="layui-form-label">${model_xzh.attributes[model_xzh.attributes.~size-1].alies}:</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="${model_xzh.attributes[model_xzh.attributes.~size-1].name}" id="${model_xzh.attributes[model_xzh.attributes.~size-1].name}" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+        <div class="layui-form-item" style="text-align: center">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="" lay-filter="submitBut">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </div>
+</form>
+<script src="resources/js/${model_xzh.lowName}/${model_xzh.lowName}Create.js"></script>

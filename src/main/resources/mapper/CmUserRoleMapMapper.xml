@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.carejava.duce.ject.web.dao.CmUserRoleMapMapper">
+    <resultMap id="BaseResultMap" type="com.carejava.duce.ject.web.entity.CmUserRoleMapEntity">
+        <result column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="USER_ID" property="userId" jdbcType="INTEGER"/>
+        <result column="ROLE_ID" property="roleId" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ID,USER_ID,ROLE_ID
+    </sql>
+    <insert id="insert" parameterType="com.carejava.duce.ject.web.entity.CmUserRoleMapEntity">
+        insert into CM_USER_ROLE_MAP( ID,USER_ID,ROLE_ID )
+        values ( #{id},#{userId},#{roleId} ) 
+    </insert>
+    <update id="update" parameterType="com.carejava.duce.ject.web.entity.CmUserRoleMapEntity">
+        update CM_USER_ROLE_MAP 
+            <set> 
+                <if test="id != null">
+                    ID = #{id},
+                </if>  
+                <if test="userId != null">
+                    USER_ID = #{userId},
+                </if>  
+                <if test="roleId != null">
+                    ROLE_ID = #{roleId},
+                </if> 
+            </set>  
+            where ID = #{id} 
+         
+    </update>
+    <update id="delete" parameterType="com.carejava.duce.ject.web.entity.CmUserRoleMapEntity">
+        delete from CM_USER_ROLE_MAP where ID = #{id} 
+    </update>
+    <select id="selectCount" parameterType="com.carejava.duce.ject.web.in.vo.CmUserRoleMapVO" resultType="java.lang.Integer">
+        select count(1) from CM_USER_ROLE_MAP 
+            <where> 
+                <if test="id != null">
+                    and ID = #{id}
+                </if>  
+                <if test="userId != null">
+                    and USER_ID = #{userId}
+                </if>  
+                <if test="roleId != null">
+                    and ROLE_ID = #{roleId}
+                </if> 
+            </where> 
+         
+    </select>
+    <select id="selectPageList" parameterType="com.carejava.duce.ject.web.in.vo.CmUserRoleMapVO" resultMap="BaseResultMap">
+        select 
+            <include refid="Base_Column_List"/> from CM_USER_ROLE_MAP
+            <where> 
+                <if test="id != null">
+                    and ID = #{id}
+                </if>  
+                <if test="userId != null">
+                    and USER_ID = #{userId}
+                </if>  
+                <if test="roleId != null">
+                    and ROLE_ID = #{roleId}
+                </if> 
+            </where>  
+            limit #{offset},#{pageNum} 
+         
+    </select>
+    <select id="queryById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select  
+        <include refid="Base_Column_List"/>  
+        from CM_USER_ROLE_MAP where ID = #{id} 
+    </select>
+    <select id="queryAll" resultMap="BaseResultMap">
+        select  
+        <include refid="Base_Column_List"/>  
+        from CM_USER_ROLE_MAP 
+    </select>
+</mapper>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.carejava.duce.ject.web.dao.CmPrivMapper">
+    <resultMap id="BaseResultMap" type="com.carejava.duce.ject.web.entity.CmPrivEntity">
+        <result column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="PID" property="pid" jdbcType="INTEGER"/>
+        <result column="CATEGORY" property="category" jdbcType="VARCHAR"/>
+        <result column="MENU_ICON" property="menuIcon" jdbcType="VARCHAR"/>
+        <result column="MENU_STAT" property="menuStat" jdbcType="VARCHAR"/>
+        <result column="MENU_SORT" property="menuSort" jdbcType="INTEGER"/>
+        <result column="OPEN_URL" property="openUrl" jdbcType="VARCHAR"/>
+        <result column="IDENTIFY_CODE" property="identifyCode" jdbcType="VARCHAR"/>
+        <result column="REAMRK" property="reamrk" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ID,NAME,PID,CATEGORY,MENU_ICON,MENU_STAT,MENU_SORT,OPEN_URL,IDENTIFY_CODE,REAMRK
+    </sql>
+    <insert id="insert" parameterType="com.carejava.duce.ject.web.entity.CmPrivEntity">
+        insert into CM_PRIV( ID,NAME,PID,CATEGORY,MENU_ICON,MENU_STAT,MENU_SORT,OPEN_URL,IDENTIFY_CODE,REAMRK )
+        values ( #{id},#{name},#{pid},#{category},#{menuIcon},#{menuStat},#{menuSort},#{openUrl},#{identifyCode},#{reamrk} ) 
+    </insert>
+    <update id="update" parameterType="com.carejava.duce.ject.web.entity.CmPrivEntity">
+        update CM_PRIV 
+            <set> 
+                <if test="id != null">
+                    ID = #{id},
+                </if>  
+                <if test="name != null">
+                    NAME = #{name},
+                </if>  
+                <if test="pid != null">
+                    PID = #{pid},
+                </if>  
+                <if test="category != null">
+                    CATEGORY = #{category},
+                </if>  
+                <if test="menuIcon != null">
+                    MENU_ICON = #{menuIcon},
+                </if>  
+                <if test="menuStat != null">
+                    MENU_STAT = #{menuStat},
+                </if>  
+                <if test="menuSort != null">
+                    MENU_SORT = #{menuSort},
+                </if>  
+                <if test="openUrl != null">
+                    OPEN_URL = #{openUrl},
+                </if>  
+                <if test="identifyCode != null">
+                    IDENTIFY_CODE = #{identifyCode},
+                </if>  
+                <if test="reamrk != null">
+                    REAMRK = #{reamrk},
+                </if> 
+            </set>  
+            where ID = #{id} 
+         
+    </update>
+    <update id="delete" parameterType="com.carejava.duce.ject.web.entity.CmPrivEntity">
+        delete from CM_PRIV where ID = #{id} 
+    </update>
+    <select id="selectCount" parameterType="com.carejava.duce.ject.web.in.vo.CmPrivVO" resultType="java.lang.Integer">
+        select count(1) from CM_PRIV 
+            <where> 
+                <if test="id != null">
+                    and ID = #{id}
+                </if>  
+                <if test="name != null">
+                    and NAME = #{name}
+                </if>  
+                <if test="pid != null">
+                    and PID = #{pid}
+                </if>  
+                <if test="category != null">
+                    and CATEGORY = #{category}
+                </if>  
+                <if test="menuIcon != null">
+                    and MENU_ICON = #{menuIcon}
+                </if>  
+                <if test="menuStat != null">
+                    and MENU_STAT = #{menuStat}
+                </if>  
+                <if test="menuSort != null">
+                    and MENU_SORT = #{menuSort}
+                </if>  
+                <if test="openUrl != null">
+                    and OPEN_URL = #{openUrl}
+                </if>  
+                <if test="identifyCode != null">
+                    and IDENTIFY_CODE = #{identifyCode}
+                </if>  
+                <if test="reamrk != null">
+                    and REAMRK = #{reamrk}
+                </if> 
+            </where> 
+         
+    </select>
+    <select id="selectPageList" parameterType="com.carejava.duce.ject.web.in.vo.CmPrivVO" resultMap="BaseResultMap">
+        select 
+            <include refid="Base_Column_List"/> from CM_PRIV
+            <where> 
+                <if test="id != null">
+                    and ID = #{id}
+                </if>  
+                <if test="name != null">
+                    and NAME = #{name}
+                </if>  
+                <if test="pid != null">
+                    and PID = #{pid}
+                </if>  
+                <if test="category != null">
+                    and CATEGORY = #{category}
+                </if>  
+                <if test="menuIcon != null">
+                    and MENU_ICON = #{menuIcon}
+                </if>  
+                <if test="menuStat != null">
+                    and MENU_STAT = #{menuStat}
+                </if>  
+                <if test="menuSort != null">
+                    and MENU_SORT = #{menuSort}
+                </if>  
+                <if test="openUrl != null">
+                    and OPEN_URL = #{openUrl}
+                </if>  
+                <if test="identifyCode != null">
+                    and IDENTIFY_CODE = #{identifyCode}
+                </if>  
+                <if test="reamrk != null">
+                    and REAMRK = #{reamrk}
+                </if> 
+            </where>  
+            limit #{offset},#{pageNum} 
+         
+    </select>
+    <select id="queryById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select  
+        <include refid="Base_Column_List"/>  
+        from CM_PRIV where ID = #{id} 
+    </select>
+    <select id="queryAll" resultMap="BaseResultMap">
+        select  
+        <include refid="Base_Column_List"/>  
+        from CM_PRIV 
+    </select>
+    <select id="getAllAPI" parameterType="java.lang.Long" resultMap="BaseResultMap">
+ SELECT t3.id, t3.name, t3.pid, t3.menu_icon, t3.menu_stat,
+    t3.menu_sort, t3.open_url, t3.identify_code, t3.REAMRK
+    FROM cm_user_role_map t1, cm_role_priv_map t2 ,cm_priv t3
+    WHERE t1.role_id = t2.role_id and t2.priv_id = t3.id and t1.user_id =  #{id,jdbcType=INTEGER}
+    ORDER BY t3.menu_sort
+    </select>
+    <select id="getAllMenu" parameterType="java.lang.Long" resultMap="BaseResultMap">
+SELECT t3.id, t3.name, t3.pid,  t3.menu_icon, t3.menu_stat,
+    t3.menu_sort, t3.open_url, t3.identify_code, t3.REAMRK
+    FROM cm_user_role_map t1, cm_role_priv_map t2 ,cm_priv t3
+    WHERE t1.role_id = t2.role_id and t2.priv_id = t3.id  and t1.user_id =  #{id,jdbcType=INTEGER}
+	  ORDER BY t3.menu_sort
+    </select>
+</mapper>

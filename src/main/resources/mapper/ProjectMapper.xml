@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.carejava.duce.ject.web.dao.ProjectMapper">
+    <resultMap id="BaseResultMap" type="com.carejava.duce.ject.web.entity.ProjectEntity">
+        <result column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="GROUPID" property="groupid" jdbcType="VARCHAR"/>
+        <result column="ARTIFACTID" property="artifactid" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="ALIES" property="alies" jdbcType="VARCHAR"/>
+        <result column="DATABASENAME" property="databasename" jdbcType="VARCHAR"/>
+        <result column="PKGNAME" property="pkgname" jdbcType="VARCHAR"/>
+        <result column="AUTOR" property="autor" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="EXCLUSIONS_TABLE" property="exclusionsTable" jdbcType="VARCHAR"/>
+        <result column="PRODUCE_TYPE" property="produceType" jdbcType="INTEGER"/>
+        <result column="DB_URL" property="dbUrl" jdbcType="VARCHAR"/>
+        <result column="DB_USERNAME" property="dbUsername" jdbcType="VARCHAR"/>
+        <result column="DB_PASSWORD" property="dbPassword" jdbcType="VARCHAR"/>
+        <result column="modelIds" property="modelIds" jdbcType="VARCHAR"/>
+        <result column="server_frame_type" property="serverFrameType" jdbcType="VARCHAR"/>
+        <result column="client_frame_type" property="clientFrameType" jdbcType="VARCHAR"/>
+        <result column="mobile_frame_type" property="mobileFrameType" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="OutVOMap" type="com.carejava.duce.ject.web.outVO.ModelOutVO">
+        <result column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="DBNAME" property="dbname" jdbcType="VARCHAR"/>
+        <result column="ALIES" property="alies" jdbcType="VARCHAR"/>
+        <result column="IDTYPE" property="idtype" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="attribute_id" property="attributeIds" jdbcType="VARCHAR"/>
+        <collection property="modelattributeOutVOS" javaType="java.util.ArrayList"  ofType="com.carejava.duce.ject.web.outVO.ModelattributeOutVO"
+                    select="selectmodelattributeList" column="{ ids=attribute_id}" >
+        </collection>
+    </resultMap>
+    <resultMap id="attrOutMap" type="com.carejava.duce.ject.web.outVO.ModelattributeOutVO">
+        <result column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="DBNAME" property="dbname" jdbcType="VARCHAR"/>
+        <result column="ALIES" property="alies" jdbcType="VARCHAR"/>
+        <result column="TYPE" property="type" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="COLUMN_KEY" property="columnKey" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        ID,GROUPID,ARTIFACTID,NAME,ALIES,DATABASENAME,PKGNAME,AUTOR,CREATE_TIME,EXCLUSIONS_TABLE,PRODUCE_TYPE,DB_URL,
+        DB_USERNAME,DB_PASSWORD,modelIds,user_id,server_frame_type,client_frame_type,mobile_frame_type
+    </sql>
+    <sql id="model_Column_List">
+        ID,NAME,DBNAME,ALIES,IDTYPE,CREATE_TIME,attribute_id
+    </sql>
+    <sql id="modelattr_Column_List">
+        ID,NAME,DBNAME,ALIES,TYPE,CREATE_TIME,COLUMN_KEY
+    </sql>
+    <insert id="insert" parameterType="com.carejava.duce.ject.web.entity.ProjectEntity">
+        insert into PROJECT( ID,GROUPID,ARTIFACTID,NAME,ALIES,DATABASENAME,PKGNAME,AUTOR,CREATE_TIME,EXCLUSIONS_TABLE,
+        PRODUCE_TYPE,DB_URL,DB_USERNAME,DB_PASSWORD,modelIds,user_id,server_frame_type,client_frame_type,mobile_frame_type )
+        values ( #{id},#{groupid},#{artifactid},#{name},#{alies},#{databasename},#{pkgname},#{autor},#{createTime},
+        #{exclusionsTable},#{produceType},#{dbUrl},#{dbUsername},#{dbPassword},#{modelIds} ,#{userId},#{serverFrameType},
+        #{clientFrameType},#{mobileFrameType})
+    </insert>
+    <update id="update" parameterType="com.carejava.duce.ject.web.entity.ProjectEntity">
+        update PROJECT 
+            <set> 
+                <if test="id != null">
+                    ID = #{id},
+                </if>  
+                <if test="groupid != null">
+                    GROUPID = #{groupid},
+                </if>  
+                <if test="artifactid != null">
+                    ARTIFACTID = #{artifactid},
+                </if>  
+                <if test="name != null">
+                    NAME = #{name},
+                </if>  
+                <if test="alies != null">
+                    ALIES = #{alies},
+                </if>  
+                <if test="databasename != null">
+                    DATABASENAME = #{databasename},
+                </if>  
+                <if test="pkgname != null">
+                    PKGNAME = #{pkgname},
+                </if>  
+                <if test="autor != null">
+                    AUTOR = #{autor},
+                </if>  
+                <if test="createTime != null">
+                    CREATE_TIME = #{createTime},
+                </if>  
+                <if test="exclusionsTable != null">
+                    EXCLUSIONS_TABLE = #{exclusionsTable},
+                </if>  
+                <if test="produceType != null">
+                    PRODUCE_TYPE = #{produceType},
+                </if>  
+                <if test="dbUrl != null">
+                    DB_URL = #{dbUrl},
+                </if>  
+                <if test="dbUsername != null">
+                    DB_USERNAME = #{dbUsername},
+                </if>  
+                <if test="dbPassword != null">
+                    DB_PASSWORD = #{dbPassword},
+                </if>
+                <if test="modelIds != null">
+                    modelIds = #{modelIds},
+                </if>
+                <if test="userId != null">
+                    user_id =#{userId},
+                </if>
+                <if test="serverFrameType != null">
+                    server_frame_type =#{serverFrameType},
+                </if>
+                <if test="clientFrameType != null">
+                    client_frame_type =#{clientFrameType},
+                </if>
+                <if test="mobileFrameType != null">
+                    mobile_frame_type =#{mobileFrameType}
+                </if>
+            </set>
+            where ID = #{id} 
+         
+    </update>
+    <update id="delete" parameterType="com.carejava.duce.ject.web.entity.ProjectEntity">
+        delete from PROJECT where ID = #{id} 
+    </update>
+    <select id="selectCount" parameterType="com.carejava.duce.ject.web.in.vo.ProjectVO" resultType="java.lang.Integer">
+        select count(1) from PROJECT 
+            <where>
+                <if test="id != null">
+                    and ID = #{id}
+                </if>
+                <if test="groupid != null">
+                    and GROUPID like #{groupid}
+                </if>  
+                <if test="artifactid != null">
+                    and ARTIFACTID like #{artifactid}
+                </if>  
+                <if test="name != null">
+                    and NAME like #{name}
+                </if>  
+                <if test="alies != null">
+                    and ALIES like #{alies}
+                </if>  
+                <if test="databasename != null">
+                    and DATABASENAME = #{databasename}
+                </if>  
+                <if test="pkgname != null">
+                    and PKGNAME = #{pkgname}
+                </if>  
+                <if test="autor != null">
+                    and AUTOR like #{autor}
+                </if>  
+                <if test="createTime != null">
+                    and CREATE_TIME = #{createTime}
+                </if>  
+                <if test="exclusionsTable != null">
+                    and EXCLUSIONS_TABLE = #{exclusionsTable}
+                </if>  
+                <if test="produceType != null">
+                    and PRODUCE_TYPE = #{produceType}
+                </if>  
+                <if test="dbUrl != null">
+                    and DB_URL = #{dbUrl}
+                </if>  
+                <if test="dbUsername != null">
+                    and DB_USERNAME = #{dbUsername}
+                </if>  
+                <if test="dbPassword != null">
+                    and DB_PASSWORD = #{dbPassword}
+                </if>
+                <if test="modelIds != null">
+                    and modelIds = #{modelIds}
+                </if>
+                <if test="userId != null">
+                    and user_id =#{userId}
+                </if>
+                <if test="serverFrameType != null">
+                    and server_frame_type =#{serverFrameType}
+                </if>
+                <if test="clientFrameType != null">
+                    and client_frame_type =#{clientFrameType}
+                </if>
+                <if test="mobileFrameType != null">
+                    and mobile_frame_type =#{mobileFrameType}
+                </if>
+            </where>
+         
+    </select>
+    <select id="selectPageList" parameterType="com.carejava.duce.ject.web.in.vo.ProjectVO" resultMap="BaseResultMap">
+        select 
+            <include refid="Base_Column_List"/> from PROJECT
+            <where>
+                <if test="id != null">
+                    and ID = #{id}
+                </if>
+                <if test="groupid != null">
+                    and GROUPID like #{groupid}
+                </if>
+                <if test="artifactid != null">
+                    and ARTIFACTID like #{artifactid}
+                </if>
+                <if test="name != null">
+                    and NAME like #{name}
+                </if>
+                <if test="alies != null">
+                    and ALIES like #{alies}
+                </if>
+                <if test="databasename != null">
+                    and DATABASENAME = #{databasename}
+                </if>
+                <if test="pkgname != null">
+                    and PKGNAME = #{pkgname}
+                </if>
+                <if test="autor != null">
+                    and AUTOR like #{autor}
+                </if>
+                <if test="createTime != null">
+                    and CREATE_TIME = #{createTime}
+                </if>
+                <if test="exclusionsTable != null">
+                    and EXCLUSIONS_TABLE = #{exclusionsTable}
+                </if>
+                <if test="produceType != null">
+                    and PRODUCE_TYPE = #{produceType}
+                </if>
+                <if test="dbUrl != null">
+                    and DB_URL = #{dbUrl}
+                </if>
+                <if test="dbUsername != null">
+                    and DB_USERNAME = #{dbUsername}
+                </if>
+                <if test="dbPassword != null">
+                    and DB_PASSWORD = #{dbPassword}
+                </if>
+                <if test="modelIds != null">
+                    and modelIds = #{modelIds}
+                </if>
+                <if test="userId != null">
+                    and user_id =#{userId}
+                </if>
+                <if test="serverFrameType != null">
+                    and server_frame_type =#{serverFrameType}
+                </if>
+                <if test="clientFrameType != null">
+                    and client_frame_type =#{clientFrameType}
+                </if>
+                <if test="mobileFrameType != null">
+                    and mobile_frame_type =#{mobileFrameType}
+                </if>
+            </where>
+            limit #{offset},#{pageNum} 
+         
+    </select>
+    <select id="queryById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select  
+        <include refid="Base_Column_List"/>  
+        from PROJECT where ID = #{id} 
+    </select>
+    <select id="queryAll" resultMap="BaseResultMap">
+        select  
+        <include refid="Base_Column_List"/>  
+        from PROJECT 
+    </select>
+
+    <select id="queryModelsByProjectId" parameterType="java.lang.String" resultMap="OutVOMap">
+        SELECT
+        <include refid="model_Column_List"/>
+        from MODEL WHERE id in
+        <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="selectmodelattributeList" resultMap="attrOutMap">
+        SELECT
+        <include refid="modelattr_Column_List"/>
+        from MODELATTRIBUTE
+        WHERE id in (${ids});
+    </select>
+</mapper>

@@ -1,0 +1,73 @@
+<blockquote class="layui-elem-quote layui-text" style="background: #eff8fb;margin-bottom: 0px;">
+    <span style="font-size: x-large">查询${model_xzh.alies}</span>
+</blockquote>
+<div class="layui-row" style="background: #f2f2f2;padding: 10px;margin-bottom: 30px">
+    <form id="from" class="layui-form" action="">
+         <%
+            var listSize = model_xzh.attributes.~size/2;
+         %>
+          <% if((model_xzh.attributes.~size)%2 == 0){ %>
+          <% for(var i=0;i<listSize;i++){ var index = i+i;%>
+        <div class="layui-form-item layui-col-md10 layui-col-md-offset1">
+            <div class="layui-col-md6">
+                <label class="layui-form-label">${model_xzh.attributes[index].alies}:</label>
+                <div class="layui-input-block">
+                    <input type="text" name="${model_xzh.attributes[index].name}" autocomplete="off" class="layui-input">
+            </div>
+            </div>
+            <div class="layui-col-md6">
+                <label class="layui-form-label">${model_xzh.attributes[index+1].alies}:</label>
+                <div class="layui-input-block">
+                    <input type="text" name="${model_xzh.attributes[index+1].name}" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        </div>
+          <% } %>
+          <% } else { %>
+          <% for(var i=0;i<listSize-1;i++){ var index = i+i;%>
+        <div class="layui-form-item layui-col-md10 layui-col-md-offset1">
+            <div class="layui-col-md6">
+                <label class="layui-form-label">${model_xzh.attributes[index].alies}:</label>
+                <div class="layui-input-block">
+                    <input type="text" name="${model_xzh.attributes[index].name}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <label class="layui-form-label">${model_xzh.attributes[index+1].alies}:</label>
+                <div class="layui-input-block">
+                    <input type="text" name="${model_xzh.attributes[index+1].name}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <% } %>
+         <div class="layui-form-item layui-col-md10 layui-col-md-offset1">
+            <div class="layui-col-md6">
+                <label class="layui-form-label">${model_xzh.attributes[model_xzh.attributes.~size-1].alies}:</label>
+                <div class="layui-input-block">
+                    <input type="text" name="${model_xzh.attributes[model_xzh.attributes.~size-1].name}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <% } %>
+        <div class="layui-form-item" style="text-align: center">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="" lay-filter="submitBut">查询</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<blockquote class="layui-elem-quote layui-text" style="background: #eff8fb;margin-bottom: 0px;">
+    <span style="font-size: x-large">列表</span>
+</blockquote>
+<div class="layui-row" style="background: #f2f2f2;padding: 10px">
+    <table class="layui-hide" id="${model_xzh.lowName}Table" lay-filter="table"></table>
+</div>
+
+<script type="text/html" id="bar">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script src="resources/js/${model_xzh.lowName}/${model_xzh.lowName}List.js"></script>

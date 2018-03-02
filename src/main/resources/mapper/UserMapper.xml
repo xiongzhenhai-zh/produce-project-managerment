@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.carejava.duce.ject.web.dao.UserMapper">
+    <resultMap id="BaseResultMap" type="com.carejava.duce.ject.web.entity.UserEntity">
+        <result column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="USER_NAME" property="userName" jdbcType="VARCHAR"/>
+        <result column="PASSWORD" property="password" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ID,USER_NAME,PASSWORD,CREATE_TIME
+    </sql>
+    <insert id="insert" parameterType="com.carejava.duce.ject.web.entity.UserEntity">
+        insert into USER( ID,USER_NAME,PASSWORD,CREATE_TIME )
+        values ( #{id},#{userName},password(#{password}),#{createTime} )
+    </insert>
+    <update id="update" parameterType="com.carejava.duce.ject.web.entity.UserEntity">
+        update USER 
+            <set> 
+                <if test="id != null">
+                    ID = #{id},
+                </if>  
+                <if test="userName != null">
+                    USER_NAME = #{userName},
+                </if>  
+                <if test="password != null">
+                    PASSWORD = #{password},
+                </if>  
+                <if test="createTime != null">
+                    CREATE_TIME = password(#{createTime}),
+                </if> 
+            </set>  
+            where ID = #{id} 
+         
+    </update>
+    <update id="delete" parameterType="com.carejava.duce.ject.web.entity.UserEntity">
+        delete from USER where ID = #{id} 
+    </update>
+    <select id="selectCount" parameterType="com.carejava.duce.ject.web.in.vo.UserVO" resultType="java.lang.Integer">
+        select count(1) from USER 
+            <where> 
+                <if test="id != null">
+                    and ID = #{id}
+                </if>  
+                <if test="userName != null">
+                    and USER_NAME = #{userName}
+                </if>  
+                <if test="password != null">
+                    and PASSWORD = #{password}
+                </if>  
+                <if test="createTime != null">
+                    and CREATE_TIME = #{createTime}
+                </if> 
+            </where> 
+         
+    </select>
+    <select id="selectPageList" parameterType="com.carejava.duce.ject.web.in.vo.UserVO" resultMap="BaseResultMap">
+        select 
+            <include refid="Base_Column_List"/> from USER
+            <where> 
+                <if test="id != null">
+                    and ID = #{id}
+                </if>  
+                <if test="userName != null">
+                    and USER_NAME = #{userName}
+                </if>  
+                <if test="password != null">
+                    and PASSWORD = #{password}
+                </if>  
+                <if test="createTime != null">
+                    and CREATE_TIME = #{createTime}
+                </if> 
+            </where>  
+            limit #{offset},#{pageNum} 
+         
+    </select>
+    <select id="queryById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select  
+        <include refid="Base_Column_List"/>  
+        from USER where ID = #{id} 
+    </select>
+    <select id="queryAll" resultMap="BaseResultMap">
+        select  
+        <include refid="Base_Column_List"/>  
+        from USER 
+    </select>
+    <select id="login" parameterType="com.carejava.duce.ject.web.in.vo.UserVO" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from USER where USER_NAME=#{userName} and password=PASSWORD(#{password})
+
+    </select>
+</mapper>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.carejava.duce.ject.web.dao.CmRolePrivMapMapper">
+    <resultMap id="BaseResultMap" type="com.carejava.duce.ject.web.entity.CmRolePrivMapEntity">
+        <result column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="ROLE_ID" property="roleId" jdbcType="INTEGER"/>
+        <result column="PRIV_ID" property="privId" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ID,ROLE_ID,PRIV_ID
+    </sql>
+    <insert id="insert" parameterType="com.carejava.duce.ject.web.entity.CmRolePrivMapEntity">
+        insert into CM_ROLE_PRIV_MAP( ID,ROLE_ID,PRIV_ID )
+        values ( #{id},#{roleId},#{privId} ) 
+    </insert>
+    <update id="update" parameterType="com.carejava.duce.ject.web.entity.CmRolePrivMapEntity">
+        update CM_ROLE_PRIV_MAP 
+            <set> 
+                <if test="id != null">
+                    ID = #{id},
+                </if>  
+                <if test="roleId != null">
+                    ROLE_ID = #{roleId},
+                </if>  
+                <if test="privId != null">
+                    PRIV_ID = #{privId},
+                </if> 
+            </set>  
+            where ID = #{id} 
+         
+    </update>
+    <update id="delete" parameterType="com.carejava.duce.ject.web.entity.CmRolePrivMapEntity">
+        delete from CM_ROLE_PRIV_MAP where ID = #{id} 
+    </update>
+    <select id="selectCount" parameterType="com.carejava.duce.ject.web.in.vo.CmRolePrivMapVO" resultType="java.lang.Integer">
+        select count(1) from CM_ROLE_PRIV_MAP 
+            <where> 
+                <if test="id != null">
+                    and ID = #{id}
+                </if>  
+                <if test="roleId != null">
+                    and ROLE_ID = #{roleId}
+                </if>  
+                <if test="privId != null">
+                    and PRIV_ID = #{privId}
+                </if> 
+            </where> 
+         
+    </select>
+    <select id="selectPageList" parameterType="com.carejava.duce.ject.web.in.vo.CmRolePrivMapVO" resultMap="BaseResultMap">
+        select 
+            <include refid="Base_Column_List"/> from CM_ROLE_PRIV_MAP
+            <where> 
+                <if test="id != null">
+                    and ID = #{id}
+                </if>  
+                <if test="roleId != null">
+                    and ROLE_ID = #{roleId}
+                </if>  
+                <if test="privId != null">
+                    and PRIV_ID = #{privId}
+                </if> 
+            </where>  
+            limit #{offset},#{pageNum} 
+         
+    </select>
+    <select id="queryById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select  
+        <include refid="Base_Column_List"/>  
+        from CM_ROLE_PRIV_MAP where ID = #{id} 
+    </select>
+    <select id="queryAll" resultMap="BaseResultMap">
+        select  
+        <include refid="Base_Column_List"/>  
+        from CM_ROLE_PRIV_MAP 
+    </select>
+</mapper>

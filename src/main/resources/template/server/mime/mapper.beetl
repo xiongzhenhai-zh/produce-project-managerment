@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="${project.pkgName}.dao.${model_xzh.name}Mapper">
+	<resultMap id="BaseResultMap" type="${project.pkgName}.entity.${model_xzh.name}Entity">
+
+	<% for(modelAttribute in model_xzh.attributes){
+
+		switch(modelAttribute.type){
+                case "String":
+                        print('<result column="'+modelAttribute.dbName+'" property="'+modelAttribute.name+'" jdbcType="VARCHAR" />');
+                        break;
+                case "Integer":
+                        print('<result column="'+modelAttribute.dbName+'" property="'+modelAttribute.name+'" jdbcType="INTEGER" />');
+                        break;
+                case "Long":
+                        print('<result column="'+modelAttribute.dbName+'" property="'+modelAttribute.name+'" jdbcType="INTEGER" />');
+                        break;
+                case "Date":
+                        print('<result column="'+modelAttribute.dbName+'" property="'+modelAttribute.name+'" jdbcType="TIMESTAMP" />');
+                        break;
+                case "BigDecimal":
+                        print('<result column="'+modelAttribute.dbName+'" property="'+modelAttribute.name+'" jdbcType="DECIMAL" />');
+                        break;
+                case "BigDecimal":
+                        print('<result column="'+modelAttribute.dbName+'" property="'+modelAttribute.name+'" jdbcType="INTEGER" />');
+                        break;
+                default:
+                       print('<result column="'+modelAttribute.dbName+'" property="'+modelAttribute.name+'" jdbcType="VARCHAR" />');
+        }
+	 } %>
+	</resultMap>
+	<sql id="Base_Column_List"><x>
+    <% for(var i=0;i<model_xzh.attributes.~size;i++){
+                   if(i+1==model_xzh.attributes.~size){
+                        print(model_xzh.attributes[i].dbName);
+                   }else{
+                        print(model_xzh.attributes[i].dbName+',');
+                   }
+           } %>
+  </x></sql>
+	<insert id="insert" parameterType="${project.pkgName}.entity.${model_xzh.name}Entity"><x>
+		insert into ${model_xzh.dbName}(
+		<% for(var i=0;i<model_xzh.attributes.~size;i++){
+                   if(i+1==model_xzh.attributes.~size){
+                        print(model_xzh.attributes[i].dbName);
+                   }else{
+                        print(model_xzh.attributes[i].dbName+',');
+                   }
+           } %>
+		)
+		</x><x>values
+		(
+		<% for(var i=0;i<model_xzh.attributes.~size;i++){
+                           if(i+1==model_xzh.attributes.~size){
+                           print('#{'+model_xzh.attributes[i].name+'}');
+                           }else{
+                           print('#{'+model_xzh.attributes[i].name+'}'+',');
+                           }
+                   } %>
+		)
+		</x>
+	</insert>
+
+
+	<update id="update" parameterType="${project.pkgName}.entity.${model_xzh.name}Entity"><x>
+		update ${model_xzh.dbName}
+		<set>
+		    <% for(modelAttribute in model_xzh.attributes){%>
+                   <if test="${modelAttribute.name} != null"><x>
+                   				${modelAttribute.dbName} = #{${modelAttribute.name}},
+                   	</x></if>
+                <% } %>
+		</set>
+		<x>where ID = #{id}</x>
+		</x>
+	</update>
+	
+	<update id="delete" parameterType="${project.pkgName}.entity.${model_xzh.name}Entity"><x>
+		delete from  ${model_xzh.dbName}
+		where ID = #{id}
+		</x>
+	</update>
+
+
+	<select id="selectCount" parameterType="${project.pkgName}.in.vo.${model_xzh.name}VO" resultType="java.lang.Integer"><x>
+		select count(1) from ${model_xzh.dbName}
+		<where>
+			<% for(modelAttribute in model_xzh.attributes){
+			var a = '<if test="'+modelAttribute.name+' != null"><x>';
+			switch(modelAttribute.type){
+                            case "String":
+                                    a =a + 'and '+modelAttribute.dbName+' = #{'+modelAttribute.name+'}';
+                                    break;
+                            default:
+                                   a = a + 'and '+modelAttribute.dbName+' = #{'+modelAttribute.name+'}';
+                    }
+             var b = a+'</x></if>';
+             %>
+            ${b}
+            <% } %>
+		</where>
+		</x>
+	</select>
+
+	<select id="selectPageList" parameterType="${project.pkgName}.in.vo.${model_xzh.name}VO" resultMap="BaseResultMap"><x>
+		select 
+		<include refid="Base_Column_List" /> 
+		from ${model_xzh.dbName}
+		<where>
+
+		   <% for(modelAttribute in model_xzh.attributes){
+           			var a = '<if test="'+modelAttribute.name+' != null"><x>';
+           			switch(modelAttribute.type){
+                                       case "String":
+                                               a=a+'and '+modelAttribute.dbName+' = #{'+modelAttribute.name+'}';
+                                               break;
+                                       default:
+                                              a=a+'and '+modelAttribute.dbName+' = #{'+modelAttribute.name+'}';
+                               }
+                        var b = a+'</x></if>';%>
+                         ${b}
+
+                       <% } %>
+		</where>
+		<x>limit #{offset},#{pageNum}</x>
+		</x>
+	</select>
+
+    <% for(attribute in model_xzh.attributes){
+            if(attribute.columnKey){
+    %>
+	<select id="queryById" parameterType="java.lang.${attribute.type}" resultMap="BaseResultMap"><x>
+		select </x>
+		<include refid="Base_Column_List" /> 
+		<x>from ${model_xzh.dbName}
+		where ${attribute.dbName} = #{${attribute.name}}
+		</x>
+	</select>
+	<% }} %>
+	
+	<select id="queryAll" resultMap="BaseResultMap"><x>	    
+	    select </x>
+	    <include refid="Base_Column_List" /> 
+	    <x>from ${model_xzh.dbName}
+	    </x>
+	</select>
+</mapper>

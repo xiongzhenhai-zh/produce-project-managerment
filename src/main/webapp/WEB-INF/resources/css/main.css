@@ -1,0 +1,386 @@
+﻿input[type="checkbox"]{
+    width: 16px;
+    height: 16px;
+	top: 4px;
+    position: relative;
+}
+
+.floatleft{
+	float:left;
+}
+.floatleftfont{
+	float:left;
+	text-align:center;
+}
+
+.right-link-font-color{/*所有链接字体的颜色*/
+	color:#08cfde;	
+}
+.main-font-color{/*所有主要字样的颜色*/
+	color:#333333;
+}
+.main-num-color{/*所有主要数字的颜色*/
+	color:#35576a;
+}
+.blue-font-color{/*蓝色字样的颜色*/
+	color:#07cedf;
+}
+.white-font-color{/*白色字样的颜色*/
+	color:#ffffff;
+}
+.title-font-color{/*一些标题字样的颜色*/
+    color:#172bc3;
+}
+.num-title-font-color{/*一些数字标题字体的颜色*/
+	color:#587484;
+}
+
+.menu-num-font{
+	font-size:12px;
+	color:#ffffff;	
+}
+.menu-foot-font{
+	font-size:12px;
+	color:#8596a5;	
+}
+
+/*right框架相关字体样式*/
+.right-header-title-font{
+	font-size:16px;
+	color:#333333;	
+}
+
+/*home界面字体样式*/
+.home-title-font{
+	font-size:12px;
+	color:#587484;		
+}
+/*section 1*/
+
+/*section 2*/
+
+/*section 3*/
+.home-blue-font{
+	font-size:40px;
+	color:#07cedf;		
+}
+.home-sub-blue-font{
+	font-size:32px;
+	color:#07cedf;		
+}
+.home-black-font{
+	font-size:40px;
+	color:#35576a;		
+}
+.home-add-font{
+	font-size:16px;
+	color:#ffffff;		
+}
+.home-title-font{
+	font-size:12px;
+	color:#8594a1;		
+}
+.home-title-tip-font{
+	font-size:12px;
+	color:#8594a1;		
+}
+
+
+.home-wrap{
+	margin-left:30px;
+	margin-top:20px;
+	margin-right:30px;
+	/*width:1120px;*/
+	width:auto;
+	background:#fff;
+	position:relative;	
+}
+.home-wrap1{height:316px;}
+.home-wrap2{height:190px;}
+.home-wrap3{height:146px;}
+
+/*first line*/
+.first-line-wrap{
+	float:left;
+	position:relative;
+}
+.chart-wrap{
+	/*width:680px;*/
+	width:auto;
+	margin-left:30px;
+	margin-right:450px;
+	height:300px;
+}
+.addup-wrap{
+	width:290px;
+	position:absolute;
+	z-index:1000;
+	top:-0px;
+	right:150px;
+}
+.add-wrap{
+	width:150px;
+	position:absolute;
+	right:0px;
+	z-index:1000;
+	top:-0px;
+}
+.chart-title-wrap{
+	width:100%;
+	text-align:center;
+	font-size:14px;
+	color:#172b3c;
+	font-weight:bold;
+}
+.addup-wrap-inner{
+	position:relative;
+	margin-top:20px;
+	border-left:2px solid #efefef;
+	width:280px;
+}
+.addup-item{
+	position:relative;
+	height:90px;
+	width:100%;
+	border-bottom:2px dotted #efefef;
+	text-align:center;
+}
+.addup-item-p{
+	position:relative;
+	padding-top:20px;
+	font-size:12px;
+}
+.addup-item-num{
+	position:relative;
+	font-size:40px;
+	padding-top:5px;
+	font-weight:bolder;
+}
+.home-wrap2-title-wrap{
+	position:relative;
+	height:58px;
+	line-height:58px;
+}
+.home-wrap2-title1{
+	position:relative;
+	float:left;
+	margin-left:30px;
+	font-size:18px;
+	color:#172B3C;
+}
+.home-wrap2-title2{
+	margin-top:3px;
+	margin-left:2px;
+	position:relative;
+	float:left;
+	font-size:12px;
+	color:#8594a1;
+}
+.home-wrap2-item-wrap{
+	position:relative;
+	height:100px;
+	margin-left:21px;
+	margin-right:21px;
+}
+.home-wrap2-item{
+	position:relative;
+	width:250px;
+	height:100px;
+	float:right;
+	margin-right:22px;
+}
+.homewrap2-item-left{
+	position:relative;
+	height:100px;
+	width:96px;
+	float:left;
+	position:absolute;
+	top:1px;
+}
+.homewrap2-item-right-new{
+	 width:auto;
+	 margin-left:100px;
+	 margin-right:11px;
+	 text-align:center;
+}
+.homewrap2-item-right{
+	position:relative;
+	height:98px;
+	width:152px;
+	float:right;
+	border-top:1px solid #efefef;
+	border-right:1px solid #efefef;
+	border-bottom:1px solid #efefef;
+}
+.home-wrap2-item-p{
+	position:relative;
+	width:100%;
+	text-align:center;
+	height:12px;
+	line-height:12px;
+	margin-top:24px;
+	font-size:12px;
+}
+.home-wrap2-item-num{
+	position:relative;
+	width:100%;
+	text-align:center;
+	height:32px;
+	line-height:32px;
+	margin-top:7px;
+	font-size:32px;
+}
+.home-wrap3-title-wrap{	
+	position:relative;
+	height:51px;
+	line-height:51px;
+	border-bottom:1px solid #efefef;
+}
+.home-wrap3-item-wrap{
+	position:relative;
+	height:14px;
+	font-size:14px;
+	line-height:14px;
+}
+.home-wrap3-item{
+	position:relative;
+	/*width:250px;*/
+	width:25%;
+	float:left;
+	margin-left:30px;
+}
+.home-wrap3-item-p{
+	position:relative;
+	float:left;
+}
+.home-wrap3-item-num{
+	position:relative;
+	float:left;
+	margin-left:18px;
+}
+.home-wrap3-item-link{
+	position:relative;
+	margin-left:36px;
+}
+
+/*12月22日添加css改变自适应样式*/
+.home-secondBlock-wrap{
+	position:absolute;
+	width:50%;
+	height:100px;
+}
+.home-secondBlock-innerWrap{
+	position:relative;
+	width:50%;
+	height:100px;
+	float:left;
+}
+.home-secondBlock-secInnerWrap{
+	width:auto;
+	margin-left:11px;
+	margin-right:11px;
+	height:100px;
+	border:1px solid #efefef;
+}
+
+#currentAuditPeosonFlow{
+	height:50px;
+	width:200px;
+	cursor:pointer;
+	filter: alpha(opacity=80);
+	background:#ccc;
+	opacity:0.8;
+	position:fixed;
+	top:100px;
+	right:50px;
+	line-height:50px;
+	text-align:center;
+}
+
+/*拨款明细邮箱样式*/
+.recieveInnerDiv{
+	width:400px;
+	height:auto;
+	border:2px solid #ccc;
+	border-radius:5px;    
+	margin: 0 auto;
+	top:25%;
+	position:relative;
+	background:#fff;
+}
+.recieveTitle,.recieveFoot{
+	height:40px;
+	line-height:40px;
+	border-top:1px solid #ccc;
+	border-bottom:1px solid #ccc;
+	text-align:center;
+}
+.recieveBody{
+	height:auto;
+	min-height:100px;
+}
+.mainPreviewButton{
+	width:100px;
+	margin-top:5px;
+	height:30px;
+	line-height:0px;
+	text-align:center;
+	margin-left:20px;
+	margin-right:20px;
+	padding:0px !important;
+}
+
+.addDetailEmailsLabel{
+	width:auto;
+	margin-left:30px;
+	margin-right:30px;
+	margin-top:10px;
+	display:block;
+}
+
+
+/*统一的提示框*/
+.imageInnerDiv{
+	width:600px;
+	height:500px;
+	border-radius:5px;    
+	margin: 0 auto;
+	top:20%;
+	position:relative;
+	background:#fff;
+	
+}
+.alertInnerDiv{
+	width:700px;
+	height:224px;
+	border-radius:5px;    
+	margin: 0 auto;
+	top:30%;
+	position:relative;
+	background:#fff;	
+}
+.alertBody{
+	width:100%;
+	text-align:center;
+	font-size:30px;
+	color:#333;
+	position:relative;
+	top:50px;
+}
+.alertFoot{
+	width:100%;
+	position:absolute;
+	bottom:20px;
+}
+.alertButton{
+	width:140px;
+	height:40px;
+	background:#afbdc2;
+	text-align:center;
+	font-size:16px;
+	color:#fff;
+	border:0px;
+	border-radius:5px;
+	margin-left:20px;
+	margin-right:20px;
+}

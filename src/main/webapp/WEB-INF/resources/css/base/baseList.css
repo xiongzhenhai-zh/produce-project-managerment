@@ -1,0 +1,19 @@
+@CHARSET "UTF-8";
+
+.deleteBtn{
+	color:#07ccdf;
+	cursor: pointer;
+}
+
+.deleteBtn:active{
+	color: #03B4C3;
+}
+
+.operation{
+	cursor: pointer;
+	margin-right: 5px;
+}
+
+.operation:HOVER{
+	color: #07ffad;
+}

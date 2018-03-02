@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content=""/>
+    <meta name="author" content="mime"/>
+    <meta name="keywords" content="chats homeInfomation"/>
+    <link rel="stylesheet" type="text/css" href="./resources/css/jquery.datables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="./resources/css/list.css"/>
+    <link rel="stylesheet" type="text/css" href="./resources/css/validate.css"/>
+    <link rel="stylesheet" type="text/css" href="./resources/css/_details.css"/>
+    <link rel="stylesheet" type="text/css" href="./resources/css/laydate.css"/>
+    <link rel="stylesheet" type="text/css" href="./resources/css/skins/laydate.css"/>
+    <title>项目实体</title>
+</head>
+<body>
+<form id="createProject">
+    <div class="detailsWrap" style="height:auto;">
+        <div class="detailsWrapInner">
+            <!--第一层信息-->
+            <div class="detailsTitles">
+                <div class="detailsTitlesTitle">
+                    新增项目实体
+                </div>
+            </div>
+
+            <div class="detailsItemOutWrap detailSectionTop">
+                <div class="detailsItemInnerRop">
+                    <div class="detailsItemPDivPop">
+                        maven-groupId:
+                    </div>
+                    <div class=" detailsItemInputDiv" style="width: 400px;">
+                        <input id="groupid" name="groupid" type="text" required placeholder="输入域名格式，例如：com.carejava"/>
+                    </div>
+                </div>
+                <div class="detailsItemInnerRop">
+                    <div class="detailsItemPDivPop">
+                        maven-artifactId:
+                    </div>
+                    <div class=" detailsItemInputDiv" style="width: 400px;">
+                        <input id="artifactid" name="artifactid" type="text" required placeholder="输入数字字母下划线"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detailsItemOutWrap detailSectionTop">
+                <div class="detailsItemInnerRop">
+                    <div class="detailsItemPDivPop">
+                        项目名称:
+                    </div>
+                    <div class=" detailsItemInputDiv" style="width: 400px;">
+                        <input id="name" name="name" type="text" required placeholder="输入数字字母下划线，例如：test-management"/>
+                    </div>
+                </div>
+                <div class="detailsItemInnerRop">
+                    <div class="detailsItemPDivPop">
+                        项目中文名:
+                    </div>
+                    <div class=" detailsItemInputDiv" style="width: 400px;">
+                        <input id="alies" name="alies" type="text" required placeholder="项目中文名"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detailsItemOutWrap detailSectionTop">
+                <div class="detailsItemInnerRop">
+                    <div class="detailsItemPDivPop">
+                        数据库:
+                    </div>
+                    <div class=" detailsItemInputDiv" style="width: 400px;">
+                        <input id="databasename" name="databasename" type="text" required placeholder="输入数据库名称"/>
+                    </div>
+                </div>
+                <div class="detailsItemInnerRop">
+                    <div class="detailsItemPDivPop">
+                        包路径:
+                    </div>
+                    <div class=" detailsItemInputDiv" style="width: 400px;">
+                        <input id="pkgname" name="pkgname" type="text" required
+                               placeholder="例如：com.carejava.test.mamagement"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detailsItemOutWrap detailSectionTop">
+                <div class="detailsItemInnerRop">
+                    <div class="detailsItemPDivPop">
+                        作者:
+                    </div>
+                    <div class=" detailsItemInputDiv" style="width: 400px;">
+                        <input id="autor" name="autor" type="text" required placeholder="作者名称"/>
+                    </div>
+                </div>
+                <div class="detailsItemInnerRop">
+                    <div class="detailsItemPDivPop">
+                        包含表:
+                    </div>
+                    <div class=" detailsItemInputDiv" style="width: 400px;">
+                        <input id="exclusionsTable" name="exclusionsTable" type="text" placeholder="不填默认全部表，多个用,号隔开"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detailsItemOutWrap detailSectionTop">
+                <div class="detailsItemInnerRop">
+                    <div class="detailsItemPDivPop">
+                        生成方式:
+                    </div>
+                    <div class=" detailsItemInputDiv" style="width: 400px;">
+                        <select id="produceType">
+                            <option value="1">数据库反向生成</option>
+                            <option value="2">根据模型生成</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="detailsItemInnerRop">
+                    <div class="detailsItemPDivPop">
+                        数据库连接:
+                    </div>
+                    <div class=" detailsItemInputDiv" style="width: 400px;">
+                        <input id="dbUrl" name="dbUrl" type="text" required
+                               placeholder="例如:jdbc:mysql://localhost:3306/test?characterEncoding=utf8"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detailsItemOutWrap detailSectionTop">
+                <div class="detailsItemInnerRop">
+                    <div class="detailsItemPDivPop">
+                        数据库用户名:
+                    </div>
+                    <div class=" detailsItemInputDiv" style="width: 400px;">
+                        <input id="dbUsername" name="dbUsername" type="text" placeholder="数据库连接用户名"/>
+                    </div>
+                </div>
+                <div class="detailsItemInnerRop">
+                    <div class="detailsItemPDivPop">
+                        数据库密码:
+                    </div>
+                    <div class=" detailsItemInputDiv" style="width: 400px;">
+                        <input id="dbPassword" name="dbPassword" type="text" placeholder="数据库连接密码"/>
+                    </div>
+                </div>
+            </div>
+            <div class="detailsItemOutWrap detailSectionTop">
+                <div class="detailsItemInnerRop">
+                    <div class="detailsItemPDivPop">
+                        后端模板:
+                    </div>
+                    <div class=" detailsItemInputDiv" style="width: 400px;">
+                        <select id="serverFrameType">
+                            <option value="ssm">Spring + SpringMVC + MyBatis</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="detailsItemInnerRop">
+                    <div class="detailsItemPDivPop">
+                        管理平台模板:
+                    </div>
+                    <div class=" detailsItemInputDiv" style="width: 400px;">
+                        <select id="clientFrameType">
+                            <option value="lauout">LayOut-UI</option>
+                            <option value="mime">mime</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="listWrap" id="entityTable">
+            <!--第一层信息-->
+            <div class="detailsTitles">
+                <div class="detailsTitlesTitle">
+                    项目用表列表
+                </div>
+            </div>
+            <table id="modelTable" class="display dataTablesAudit"
+                   style="border-bottom: 1px solid #EFEFEF !important;padding: 5px;" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th>主键</th>
+                    <th>实体名</th>
+                    <th>对应数据表名</th>
+                    <th>备注</th>
+                    <th>创建时间</th>
+                    <th>快捷操作</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div class="detailsItemOutWrap detailSectionTop">
+            <div class="detailsItemOutWrap detailSectionTop">
+                <input class="detailsItemInput listButton" style="width:150px;height: 38px; margin-left:30%;"
+                       type="button" id="saveBtn" value="保存"/>
+                <input class="detailsItemInput listButton" style="width:150px;height: 38px; margin-left:30px;"
+                       type="button" id="cancelBtn" value="取消"/>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+<script type="text/javascript" src="./resources/js/lib/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="./resources/js/lib/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="./resources/js/lib/jquery.validate.js"></script>
+<script type="text/javascript" src="./resources/js/lib/messages_zh.js"></script>
+<script type="text/javascript" src="./resources/js/validatorUtil.js"></script>
+<script type="text/javascript" src="./resources/js/commonUtil.js" charset="utf-8"></script>
+<script type="text/javascript" src="./resources/js/project/projectCreate.js"></script>
+</html>

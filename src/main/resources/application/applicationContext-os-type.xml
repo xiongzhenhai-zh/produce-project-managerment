@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 自动扫描的包名 -->
+    <context:component-scan base-package="com.carejava.core.build"/>
+
+    <bean id="osType" class="com.carejava.core.build.code.OSType">
+        <property name="clientTypes">
+            <map>
+                <entry key="default">
+                    <bean class="com.carejava.core.build.model.Frame">
+                        <property name="name" value="default"/>
+                        <property name="alies" value="default"/>
+                        <property name="build" ref="defaultClient"/>
+                    </bean>
+                </entry>
+                <entry key="layout">
+                    <bean class="com.carejava.core.build.model.Frame">
+                        <property name="name" value="layout"/>
+                        <property name="alies" value="layout"/>
+                        <property name="build" ref="layerClient"/>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+        <property name="serviceTypes">
+            <map>
+                <entry key="ssm">
+                    <bean class="com.carejava.core.build.model.Frame">
+                        <property name="name" value="ssm"/>
+                        <property name="alies" value="ssm"/>
+                        <property name="build" ref="defaultServer"/>
+                    </bean>
+                </entry>
+                <!--<entry key="ssh">
+                    <bean class="com.carejava.core.build.model.Frame">
+                        <property name="name" value="ssh"/>
+                        <property name="alies" value="ssh"/>
+                        <property name="build" ref="sshServer"/>
+                    </bean>
+                </entry>-->
+            </map>
+        </property>
+    </bean>
+</beans>
