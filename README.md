@@ -13,3 +13,6 @@
 代码实现：
 1. 实现IBuild里面的build方法；
 2. 在applicationContext-os-type.xml里添加上对应的实现类；
+
+新增Spring Boot2.0 的服务器框架，构建生成的Spring Boot运行需要jdk8，如果依赖外部Tomcat则需要Tomcat8及以上。如果mvn构建失败，可以使用mvn -v检查maven中依赖的jdk是否是1.8以上。
+
