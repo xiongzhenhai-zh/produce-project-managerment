@@ -1,0 +1,26 @@
+package ${project.pkgName}.service;
+
+import ${project.pkgName}.entity.${model_xzh.name}Entity;
+import ${project.pkgName}.in.vo.${model_xzh.name}VO;
+
+import java.util.List;
+
+public interface I${model_xzh.name}Service {
+    boolean add(${model_xzh.name}Entity ${model_xzh.lowName}Entity);
+
+    boolean update(${model_xzh.name}Entity ${model_xzh.lowName}Entity);
+
+    int selectCount(${model_xzh.name}VO ${model_xzh.lowName}VO);
+
+    List<${model_xzh.name}Entity> selectPageList(${model_xzh.name}VO ${model_xzh.lowName}VO);
+
+    boolean delete(${model_xzh.name}Entity ${model_xzh.lowName}Entity);
+
+    <% for(attribute in model_xzh.attributes){
+        if(attribute.columnKey){
+    %>
+
+    ${model_xzh.name}Entity queryById(${attribute.type} ${attribute.name});
+    <% }} %>
+    List<${model_xzh.name}Entity> queryAll();
+}

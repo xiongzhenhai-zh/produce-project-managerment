@@ -1,0 +1,147 @@
+package ${project.pkgName}.core;
+
+import java.io.Serializable;
+
+import ${project.pkgName}.enums.ErrorCode;
+
+/**
+ * 结果包装类<br>
+ * 包装接口返回结果
+ *
+ * @author ${project.autor}
+ * @version [V1.0, ${project.dateString}]
+ */
+public class ResultBean implements Serializable {
+
+    /**
+     * 结果编码
+     */
+    private String code;
+
+    /**
+     * 结果信息
+     */
+    private String desc;
+
+    /**
+     * 用户token
+     */
+    private String accessToken;
+
+    /**
+     * 返回结果
+     */
+    private Serializable content;
+
+    /**
+     * 无参构造
+     */
+    public ResultBean() {
+    }
+
+    /**
+     * @param code
+     * @param desc
+     */
+    public ResultBean(String code, String desc) {
+        this.code = code;
+        this.desc = desc;
+    }
+
+    /**
+     * @param code
+     * @param desc
+     * @param accessToken
+     */
+    public ResultBean(String code, String desc, String accessToken) {
+        this.code = code;
+        this.desc = desc;
+        this.accessToken = accessToken;
+    }
+
+    /**
+     * @param code
+     * @param desc
+     * @param content
+     */
+    public ResultBean(String code, String desc, Serializable content) {
+        this.code = code;
+        this.desc = desc;
+        this.content = content;
+    }
+
+    /**
+     * @param code
+     * @param desc
+     * @param accessToken
+     * @param content
+     */
+    public ResultBean(String code, String desc, String accessToken, Serializable content) {
+        this.code = code;
+        this.desc = desc;
+        this.accessToken = accessToken;
+        this.content = content;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public Serializable getContent() {
+        return content;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
+    public void setContent(Serializable content) {
+        this.content = content;
+    }
+
+    public static ResultBean getResultBean(String code, String desc, Serializable content) {
+        ResultBean bean = new ResultBean(code, desc, content);
+        return bean;
+    }
+
+    public static ResultBean getResultBean(ErrorCode errorCode, Serializable content) {
+        ResultBean bean = new ResultBean(errorCode.getErrorCode(), errorCode.getErrorDesc(), content);
+        return bean;
+    }
+
+    public static ResultBean getResultBean(ErrorCode errorCode) {
+        ResultBean bean = new ResultBean(errorCode.getErrorCode(), errorCode.getErrorDesc(), null);
+        return bean;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("ResultBean [code=");
+        builder.append(code);
+        builder.append(", desc=");
+        builder.append(desc);
+        builder.append(", accessToken=");
+        builder.append(accessToken);
+        builder.append(", content=");
+        builder.append(content);
+        builder.append("]");
+        return builder.toString();
+    }
+}

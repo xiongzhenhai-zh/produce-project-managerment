@@ -1,0 +1,127 @@
+package ${project.pkgName}.business.impl;
+
+import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+import ${project.pkgName}.business.I${model_xzh.name}Business;
+import ${project.pkgName}.core.PageResultBean;
+import ${project.pkgName}.core.ResultBean;
+import ${project.pkgName}.entity.${model_xzh.name}Entity;
+import ${project.pkgName}.in.vo.${model_xzh.name}VO;
+import ${project.pkgName}.enums.ErrorCode;
+import ${project.pkgName}.service.I${model_xzh.name}Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+/**
+ *
+ * ${project.alies}<br>
+ * ${model_xzh.name}business 层
+ *
+ * @author ${project.autor}
+ * @version [V1.0, ${project.dateString}]
+ */
+@Component("${model_xzh.lowName}Business")
+public class ${model_xzh.name}BusinessImpl extends BaseBusiness implements I${model_xzh.name}Business{
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(${model_xzh.name}BusinessImpl.class);
+
+    @Autowired
+    private I${model_xzh.name}Service ${model_xzh.lowName}Service;
+
+    @Override
+    public ResultBean add(${model_xzh.name}Entity ${model_xzh.lowName}Entity) {
+
+        if (!checkParam(${model_xzh.lowName}Entity)) {
+            return getResultBean(ErrorCode.ERR_INVALID_PARAMS);
+        }
+        boolean result = ${model_xzh.lowName}Service.add(${model_xzh.lowName}Entity);
+        if (result) {
+            return getResultBean(ErrorCode.SUCCESS);
+        }else {
+            return getResultBean(ErrorCode.ERR_SYSTEM_ERR);
+        }
+    }
+
+    private boolean checkParam(${model_xzh.name}Entity ${model_xzh.lowName}Entity) {
+
+        if (${model_xzh.lowName}Entity== null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public ResultBean update(${model_xzh.name}Entity ${model_xzh.lowName}Entity) {
+
+        if (${model_xzh.lowName}Entity == null ){
+            return getResultBean(ErrorCode.ERR_INVALID_PARAMS);
+        }
+        boolean success = ${model_xzh.lowName}Service.update(${model_xzh.lowName}Entity);
+        if (success) {
+            return getResultBean(ErrorCode.SUCCESS);
+        } else {
+            return getResultBean(ErrorCode.ERR_SYSTEM_ERR);
+        }
+    }
+
+    @Override
+    public ResultBean selectPageList(${model_xzh.name}VO ${model_xzh.lowName}VO) {
+
+        if (${model_xzh.lowName}VO == null ) {
+            return getResultBean(ErrorCode.ERR_INVALID_PARAMS);
+        }
+        PageResultBean<${model_xzh.name}Entity> result = new PageResultBean<${model_xzh.name}Entity>();
+
+        int totalNum = ${model_xzh.lowName}Service.selectCount(${model_xzh.lowName}VO);
+
+        if (totalNum > 0) {
+            result.setTotalNum(totalNum);
+            int totalPage = (totalNum - 1) / ${model_xzh.lowName}VO.getPageNum() + 1;
+            result.setTotalPage(totalPage);
+
+            ${model_xzh.lowName}VO.setOffset((${model_xzh.lowName}VO.getCurrentPage() - 1) * ${model_xzh.lowName}VO.getPageNum());
+
+            List<${model_xzh.name}Entity> list = ${model_xzh.lowName}Service.selectPageList(${model_xzh.lowName}VO);
+            result.setList(list);
+        }
+        return getResultBean(ErrorCode.SUCCESS, result);
+    }
+
+    @Override
+    public ResultBean delete(${model_xzh.name}Entity ${model_xzh.lowName}Entity) {
+
+        if (${model_xzh.lowName}Entity==null) {
+            return getResultBean(ErrorCode.ERR_INVALID_PARAMS);
+        }
+        boolean success = ${model_xzh.lowName}Service.delete(${model_xzh.lowName}Entity);
+        if (success) {
+            return getResultBean(ErrorCode.SUCCESS);
+        }else {
+            return getResultBean(ErrorCode.ERR_SYSTEM_ERR);
+        }
+
+    }
+
+    <% for(attribute in model_xzh.attributes){
+        if(attribute.columnKey){
+    %>
+    @Override
+    public ResultBean queryById(${attribute.type} ${attribute.name}) {
+
+        if (${attribute.name}==null) {
+            return getResultBean(ErrorCode.ERR_INVALID_PARAMS);
+        }
+        ${model_xzh.name}Entity ${model_xzh.lowName}Entity = ${model_xzh.lowName}Service.queryById(${attribute.name});
+        if (${model_xzh.lowName}Entity==null) {
+            return getResultBean(ErrorCode.NOT_EXISTS);
+        }
+        return getResultBean(ErrorCode.SUCCESS,(Serializable) ${model_xzh.lowName}Entity);
+    }
+    <% }} %>
+}

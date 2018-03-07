@@ -1,0 +1,22 @@
+package ${project.pkgName};
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+/**
+ * 〈一句话功能简述〉<br>
+ * 用于访问静态资源
+ *
+ * @author ${project.autor}
+ * @version [V1.0,  ${project.dateString}]
+ */
+@Configuration
+public class StaticResourceConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registration){
+        registration.addResourceHandler("/**").addResourceLocations("/WEB-INF/views/");
+        registration.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/");
+    }
+}

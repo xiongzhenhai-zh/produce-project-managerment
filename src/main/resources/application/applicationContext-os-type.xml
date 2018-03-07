@@ -35,13 +35,13 @@
                         <property name="build" ref="defaultServer"/>
                     </bean>
                 </entry>
-                <!--<entry key="ssh">
+                <entry key="spring-boot">
                     <bean class="com.carejava.core.build.model.Frame">
-                        <property name="name" value="ssh"/>
-                        <property name="alies" value="ssh"/>
-                        <property name="build" ref="sshServer"/>
+                        <property name="name" value="spring-boot"/>
+                        <property name="alies" value="spring Boot+Mybatis"/>
+                        <property name="build" ref="springBootService"/>
                     </bean>
-                </entry>-->
+                </entry>
             </map>
         </property>
     </bean>

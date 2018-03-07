@@ -1,0 +1,37 @@
+package ${project.pkgName}.dao;
+
+import java.util.List;
+
+import ${project.pkgName}.entity.${model_xzh.name}Entity;
+import ${project.pkgName}.in.vo.${model_xzh.name}VO;
+import org.apache.ibatis.annotations.Mapper;
+
+/**
+ * 
+ * 〈一句话功能简述〉<br> 
+ * ${model_xzh.name}Dao层
+ *
+ * @author ${project.autor}
+ * @version [V1.0, ${project.dateString}]
+ */
+@Mapper
+public interface ${model_xzh.name}Mapper {
+    
+    int insert(${model_xzh.name}Entity ${model_xzh.lowName}Entity);
+    
+    int update(${model_xzh.name}Entity ${model_xzh.lowName}Entity);
+    
+    int selectCount(${model_xzh.name}VO ${model_xzh.lowName}VO);
+    
+    List<${model_xzh.name}Entity> selectPageList(${model_xzh.name}VO ${model_xzh.lowName}VO);
+    
+    int delete(${model_xzh.name}Entity ${model_xzh.lowName}Entity);
+
+    <% for(attribute in model_xzh.attributes){
+        if(attribute.columnKey){
+    %>
+    ${model_xzh.name}Entity queryById(${attribute.type} ${attribute.name});
+    <% }} %>
+    List<${model_xzh.name}Entity> queryAll();
+
+}

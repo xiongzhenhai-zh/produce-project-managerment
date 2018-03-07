@@ -1,0 +1,68 @@
+package ${project.pkgName}.controller;
+
+import ${project.pkgName}.entity.${model_xzh.name}Entity;
+import ${project.pkgName}.in.vo.${model_xzh.name}VO;
+import ${project.pkgName}.core.ResultBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import ${project.pkgName}.business.I${model_xzh.name}Business;
+
+import javax.servlet.http.HttpServletRequest;
+
+/**
+ *
+ * ${project.alies}<br>
+ * ${model_xzh.name}控制层
+ *
+ * @author ${project.autor}
+ * @version [V1.0, ${project.dateString}]
+ */
+@RestController
+@RequestMapping(value = "/${model_xzh.lowName}", produces = { "application/json;charset=UTF-8" }, method = RequestMethod.POST)
+public class ${model_xzh.name}Controller extends BaseController{
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(${model_xzh.name}Controller.class);
+
+    @Autowired
+    private I${model_xzh.name}Business ${model_xzh.lowName}Business;
+
+    @RequestMapping(value = "add")
+    @ResponseBody
+    public ResultBean add(HttpServletRequest request, @RequestBody ${model_xzh.name}Entity ${model_xzh.lowName}Entity) {
+        return ${model_xzh.lowName}Business.add(${model_xzh.lowName}Entity);
+    }
+
+    @RequestMapping(value= "update")
+    @ResponseBody
+    public ResultBean update(HttpServletRequest request, @RequestBody ${model_xzh.name}Entity ${model_xzh.lowName}Entity) {
+        return ${model_xzh.lowName}Business.update(${model_xzh.lowName}Entity);
+    }
+
+    @RequestMapping(value= "selectPageList")
+    @ResponseBody
+    public ResultBean selectPageList(HttpServletRequest request, @RequestBody ${model_xzh.name}VO ${model_xzh.lowName}VO) {
+        return ${model_xzh.lowName}Business.selectPageList(${model_xzh.lowName}VO);
+    }
+
+    @RequestMapping(value= "delete")
+    @ResponseBody
+    public ResultBean delete(HttpServletRequest request, @RequestBody ${model_xzh.name}Entity ${model_xzh.lowName}Entity) {
+        return ${model_xzh.lowName}Business.delete(${model_xzh.lowName}Entity);
+    }
+
+    <% for(attribute in model_xzh.attributes){
+        if(attribute.columnKey){
+    %>
+    @RequestMapping(value= "queryById")
+    @ResponseBody
+    public ResultBean queryById(HttpServletRequest request, @RequestBody ${model_xzh.name}Entity ${model_xzh.lowName}Entity) {
+        return ${model_xzh.lowName}Business.queryById(${model_xzh.lowName}Entity.get${attribute.firstUpName}());
+    }
+    <% }} %>
+}

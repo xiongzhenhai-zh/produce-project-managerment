@@ -1,0 +1,16 @@
+spring:
+  # 数据库配置
+  datasource:
+    url: ${project.dataSource.url}
+    username: ${project.dataSource.username}
+    password: ${project.dataSource.password}
+    driver-class-name: com.mysql.jdbc.Driver
+
+
+# mybatis配置
+mybatis:
+  # 配置映射类所在包名
+  type-aliases-package: ${project.pkgName}.entity
+  # 配置mapper xml文件所在路径，这里是一个数组
+  mapper-locations:
+    - mapper/*Mapper.xml

@@ -1,0 +1,26 @@
+package ${project.pkgName};
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+
+/**
+ * 〈一句话功能简述〉<br>
+ * 〈功能详细描述〉
+ *
+ * @author ${project.autor}
+ * @version [V1.0,  ${project.dateString}]
+ */
+@SpringBootApplication
+public class SpringBootStartApplication extends SpringBootServletInitializer {
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(SpringBootStartApplication.class);
+    }
+
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBootStartApplication.class, args);
+    }
+}

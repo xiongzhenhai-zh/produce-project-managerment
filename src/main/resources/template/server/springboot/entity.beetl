@@ -1,0 +1,35 @@
+package ${project.pkgName}.entity;
+
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ *
+ * 〈一句话功能简述〉<br>
+ * ${model_xzh.name}实体类
+ *
+ * @author ${project.autor}
+ * @version [V1.0, ${project.dateString}]
+ */
+public class ${model_xzh.name}Entity implements Serializable{
+
+    <% for(modelAttribute in model_xzh.attributes){%>
+    /**
+     * ${modelAttribute.alies}
+     */
+    private ${modelAttribute.type} ${modelAttribute.name};
+
+    <% } %>
+
+ <% for(modelAttribute in model_xzh.attributes){%>
+     public ${modelAttribute.type} get${modelAttribute.firstUpName}() {
+            return ${modelAttribute.name};
+     }
+
+     public void set${modelAttribute.firstUpName}(${modelAttribute.type} ${modelAttribute.name}) {
+         this.${modelAttribute.name} = ${modelAttribute.name};
+     }
+
+    <% } %>
+
+}
